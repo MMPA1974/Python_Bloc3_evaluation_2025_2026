@@ -14,6 +14,9 @@
             --dark-card: #2d3748; /* Slightly lighter dark gray */
             --text-light: #e2e8f0; /* Light gray */
             --progress-bar-bg: #4a5568; /* Medium gray */
+            --accent-pink: #ec4899; /* Tailwind pink-500 */
+            --accent-purple: #8b5cf6; /* Tailwind purple-500 */
+            --accent-teal: #14b8a6; /* Tailwind teal-500 */
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -95,6 +98,23 @@
         .text-justify {
             text-align: justify;
         }
+        /* Custom list styling for actions */
+        .action-list {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+        }
+        .action-list li {
+            margin-bottom: 0.5rem; /* Space between list items */
+        }
+        .action-list li label {
+            display: flex;
+            align-items: flex-start; /* Align checkbox at the top of multi-line text */
+            gap: 0.75rem; /* Space between checkbox and text */
+        }
+        .action-list li label input[type="checkbox"] {
+            flex-shrink: 0; /* Prevent checkbox from shrinking */
+            margin-top: 0.25rem; /* Adjust vertical alignment if needed */
+        }
     </style>
 </head>
 <body class="p-8">
@@ -135,10 +155,10 @@
         <nav class="mb-12">
             <ul class="flex flex-wrap justify-center space-x-4">
                 <li><a href="#outils" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">🛠️ Outils & Méthodes</a></li>
-                <li><a href="#dossier1" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">📝 Dossier 1</a></li>
-                <li><a href="#dossier2" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">💻 Dossier 2</a></li>
-                <li><a href="#liens_blocs" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">🔗 Liens Blocs 1 & 2</a></li>
-                <li><a href="#conseils" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">💡 Conseils</a></li>
+                <li><a href="#dossier1" class="px-5 py-3 rounded-full bg-pink-700 hover:bg-pink-600 text-white font-semibold shadow-lg">📝 Dossier 1</a></li>
+                <li><a href="#dossier2" class="px-5 py-3 rounded-full bg-purple-700 hover:bg-purple-600 text-white font-semibold shadow-lg">💻 Dossier 2</a></li>
+                <li><a href="#liens_blocs" class="px-5 py-3 rounded-full bg-teal-700 hover:bg-teal-600 text-white font-semibold shadow-lg">🔗 Liens Blocs 1 & 2</a></li>
+                <li><a href="#conseils" class="px-5 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg">💡 Conseils</a></li>
             </ul>
         </nav>
 
@@ -149,7 +169,7 @@
             <p class="mb-4 text-justify">Voici la liste des outils et méthodes que vous allez utiliser, avec des liens et des procédures spécifiques pour votre MacBook Pro M1 2021.</p>
 
             <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.1. Environnement de Développement et Langages</h3>
-            <ul class="space-y-4 mb-6">
+            <ul class="space-y-4 mb-6 action-list">
                 <li>
                     <h4 class="text-xl font-medium">Langage de Programmation Backend : Python</h4>
                     <p>Outil : <strong class="font-bold">Python 3.x</strong> (dernière version stable recommandée).</p>
@@ -161,9 +181,9 @@
                     <h4 class="text-xl font-medium">Framework Web Backend : Django (recommandé) ou Flask</h4>
                     <p>Outil : <strong class="font-bold">Django</strong> (ou Flask).</p>
                     <p>Installation (via <code class="bg-gray-700 p-1 rounded">pip</code>, après avoir activé votre environnement virtuel) :</p>
-                    <ul class="list-disc list-inside ml-4">
-                        <li>Pour Django : <code class="bg-gray-700 p-1 rounded">pip install Django djangorestframework</code></li>
-                        <li>Pour Flask : <code class="bg-gray-700 p-1 rounded">pip install Flask</code></li>
+                    <ul class="action-list ml-4">
+                        <li><code class="bg-gray-700 p-1 rounded">pip install Django djangorestframework</code> (Pour Django)</li>
+                        <li><code class="bg-gray-700 p-1 rounded">pip install Flask</code> (Pour Flask)</li>
                     </ul>
                     <p>Lien Doc : <a href="https://docs.djangoproject.com/en/5.0/" target="_blank" class="text-blue-400 hover:underline">Django Documentation</a> / <a href="https://flask.palletsprojects.com/en/3.0/" target="_blank" class="text-blue-400 hover:underline">Flask Documentation</a></p>
                     <p class="text-sm text-gray-400">Réf. Module : B3_M08_024_ (Cadre théorique de Flask), B3_M08_027_ (Cadre théorique de Django).</p>
@@ -188,7 +208,7 @@
             </ul>
 
             <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.2. Bases de Données</h3>
-            <ul class="space-y-4 mb-6">
+            <ul class="space-y-4 mb-6 action-list">
                 <li>
                     <h4 class="text-xl font-medium">Base de Données Relationnelle : PostgreSQL (recommandé)</h4>
                     <p>Outil : PostgreSQL (le serveur de base de données).</p>
@@ -206,7 +226,7 @@
             </ul>
 
             <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.3. Gestion de Projet et Versioning</h3>
-            <ul class="space-y-4 mb-6">
+            <ul class="space-y-4 mb-6 action-list">
                 <li>
                     <h4 class="text-xl font-medium">Outil de Gestion de Projet : Trello</h4>
                     <p>Outil : <strong class="font-bold">Trello</strong>.</p>
@@ -230,7 +250,7 @@
             </ul>
 
             <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.4. Tests et Déploiement</h3>
-            <ul class="space-y-4">
+            <ul class="space-y-4 action-list">
                 <li>
                     <h4 class="text-xl font-medium">Framework de Tests Python : Pytest</h4>
                     <p>Outil : <strong class="font-bold">Pytest</strong> et <strong class="font-bold">pytest-cov</strong> (pour la couverture de code).</p>
@@ -268,7 +288,7 @@
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d1-2-1">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d1-2-1">
+                <ul class="space-y-3 action-list" data-progress-group="d1-2-1">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Page d'accueil et offres :</h4>
                         <label class="flex items-center space-x-3 mb-2">
@@ -366,7 +386,7 @@
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d1-2-2">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d1-2-2">
+                <ul class="space-y-3 action-list" data-progress-group="d1-2-2">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Protection des données personnelles :</h4>
                         <label class="flex items-center space-x-3">
@@ -455,7 +475,7 @@
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d1-2-3">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d1-2-3">
+                <ul class="space-y-3 action-list" data-progress-group="d1-2-3">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Langage Backend : Python</h4>
                         <label class="flex items-center space-x-3">
@@ -548,7 +568,7 @@
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-1">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-4" data-progress-group="d2-3-1">
+                <ul class="space-y-4 action-list" data-progress-group="d2-3-1">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Initialisation du Projet Backend (Python) :</h4>
                         <label class="flex items-center space-x-3">
@@ -664,7 +684,7 @@
                             <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
                             <span><strong class="font-bold">Écrivez votre code JavaScript</strong> (<code class="bg-gray-700 p-1 rounded">static/js/main.js</code> par exemple) :</span>
                         </label>
-                        <ul class="list-disc list-inside ml-8 space-y-1">
+                        <ul class="action-list ml-8 space-y-1">
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Requêtes Fetch/AJAX</strong> : Utilisez <code class="bg-gray-700 p-1 rounded">fetch()</code> pour communiquer avec les APIs de votre backend.</span></label></li>
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Gestion des événements</strong> : Attachez des écouteurs d'événements aux boutons (ex: "Ajouter au panier", "Se connecter", "Payer").</span></label></li>
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Simulation de paiement</strong> : Créez une fonction JavaScript qui simule un paiement réussi ou échoué.</span></label></li>
@@ -705,7 +725,7 @@
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-2">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d2-3-2">
+                <ul class="space-y-3 action-list" data-progress-group="d2-3-2">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Identifiez les entités :</h4>
                         <label class="flex items-center space-x-3">
@@ -849,7 +869,7 @@ Offre "1" -- "0..N" Billet : est_base_sur
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-3">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d2-3-3">
+                <ul class="space-y-3 action-list" data-progress-group="d2-3-3">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Assurez-vous que votre tableau Trello est à jour :</h4>
                         <label class="flex items-center space-x-3">
@@ -915,7 +935,7 @@ Offre "1" -- "0..N" Billet : est_base_sur
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-4">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d2-3-4">
+                <ul class="space-y-3 action-list" data-progress-group="d2-3-4">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Créez un nouveau document (Word ou PDF).</h4>
                         <label class="flex items-center space-x-3">
@@ -926,7 +946,7 @@ Offre "1" -- "0..N" Billet : est_base_sur
                     </li>
                     <li>
                         <h4 class="text-xl font-medium mb-2">Structurez votre documentation technique avec les sections suivantes :</h4>
-                        <ul class="list-disc list-inside ml-4 space-y-1">
+                        <ul class="action-list ml-4 space-y-1">
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Introduction</strong> : Contexte du projet (billetterie JO), Objectifs de cette documentation technique.</span></label></li>
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Architecture du Système</strong> : Décrivez les différentes couches (Frontend, Backend, Base de données, API, Services externes), expliquez leur rôle et interactions. <strong class="font-bold">Incluez le diagramme d'architecture logicielle</strong> (<span class="font-semibold">B1_M08_</span>).</span></label></li>
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Technologies Utilisées</strong> : Listez les versions exactes et expliquez le rôle spécifique de chaque technologie majeure (Python, Django/Flask, HTML, CSS, JavaScript, Bootstrap, PostgreSQL, MongoDB si utilisée). Mentionnez les principales bibliothèques Python et JavaScript.</span></label></li>
@@ -951,7 +971,7 @@ Offre "1" -- "0..N" Billet : est_base_sur
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-5">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d2-3-5">
+                <ul class="space-y-3 action-list" data-progress-group="d2-3-5">
                     <li>
                         <label class="flex items-center space-x-3">
                             <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5">
@@ -961,7 +981,7 @@ Offre "1" -- "0..N" Billet : est_base_sur
                     </li>
                     <li>
                         <h4 class="text-xl font-medium mb-2">Structurez votre manuel par parcours utilisateur :</h4>
-                        <ul class="list-disc list-inside ml-4 space-y-1">
+                        <ul class="action-list ml-4 space-y-1">
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5"><span><strong class="font-bold">Introduction</strong> : Qu'est-ce que l'application et à quoi sert-elle ?</span></label></li>
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5"><span><strong class="font-bold">Pour les Visiteurs/Utilisateurs</strong> : Accéder au site, Découvrir les offres, Sélectionner et ajouter au panier, Créer un compte, Se connecter, Simuler le paiement, Accéder à l'e-billet, Consulter l'historique des commandes.</span></label></li>
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5"><span><strong class="font-bold">Pour les Administrateurs</strong> : Accéder à l'espace administrateur, Gérer les offres, Visualiser les ventes.</span></label></li>
@@ -1002,7 +1022,7 @@ Offre "1" -- "0..N" Billet : est_base_sur
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-6">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d2-3-6">
+                <ul class="space-y-3 action-list" data-progress-group="d2-3-6">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Préparer l'environnement de tests :</h4>
                         <label class="flex items-center space-x-3">
@@ -1124,7 +1144,7 @@ class AuthAPITest(TestCase):
                 </div>
                 <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-7">0%</span> Complété pour cette section.</p>
 
-                <ul class="space-y-3" data-progress-group="d2-3-7">
+                <ul class="space-y-3 action-list" data-progress-group="d2-3-7">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Préparer votre application pour le déploiement :</h4>
                         <label class="flex items-center space-x-3">
@@ -1204,10 +1224,10 @@ class AuthAPITest(TestCase):
             </div>
             <p class="text-sm mb-4 text-gray-300"><span id="progress-text-links">0%</span> Complété pour cette section.</p>
 
-            <ul class="space-y-4" data-progress-group="links">
+            <ul class="space-y-4 action-list" data-progress-group="links">
                 <li>
                     <h3 class="text-2xl font-semibold mb-2 text-blue-400">Bloc 1 : Conception et spécification d'une solution digitale</h3>
-                    <ul class="list-disc list-inside ml-4 space-y-1">
+                    <ul class="action-list ml-4 space-y-1">
                         <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Spécifications techniques</strong> : Dans votre rapport, lorsque vous décrivez votre code, mentionnez comment il traduit les spécifications techniques que vous avez apprises à élaborer (<span class="font-semibold">B1_M03_</span> et <span class="font-semibold">B1_M09_</span>). Votre code du Bloc 3 doit être la traduction directe de ces spécifications.</span></label></li>
                         <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Architecture logicielle</strong> : Lorsque vous présentez l'architecture de votre solution, expliquez comment celle que vous avez conçue en <span class="font-semibold">B1_M08_</span> a guidé votre développement concret.</span></label></li>
                         <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Analyse des besoins</strong> : Rappelez comment l'analyse approfondie des besoins client (<span class="font-semibold">B1_M02_</span>) a directement façonné les fonctionnalités que vous avez implémentées.</span></label></li>
@@ -1217,7 +1237,7 @@ class AuthAPITest(TestCase):
                 </li>
                 <li>
                     <h3 class="text-2xl font-semibold mb-2 text-blue-400">Bloc 2 : Gestion, pilotage et testing d'une Solution Digitale</h3>
-                    <ul class="list-disc list-inside ml-4 space-y-1">
+                    <ul class="action-list ml-4 space-y-1">
                         <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Méthodologies agiles (Scrum/Kanban)</strong> : Dans votre rapport et oral, expliquez comment vous avez appliqué ces méthodologies (<span class="font-semibold">B2_M02_</span>, <span class="font-semibold">B2_M03_</span>, <span class="font-semibold">B2_M04_</span>, <span class="font-semibold">B2_M05_</span>, <span class="font-semibold">B2_M06_</span>) pour gérer le développement de votre projet. Montrez votre tableau Kanban Trello comme preuve concrète de cette gestion.</span></label></li>
                         <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Plan de test fonctionnel</strong> : Référez-vous au plan de test que vous avez appris à préparer en <span class="font-semibold">B2_M09_</span>. Votre rapport de tests (point 3.6) en est l'application directe.</span></label></li>
                         <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Analyse des risques</strong> : Mentionnez comment l'analyse des risques (<span class="font-semibold">B2_M09_</span>) a influencé vos choix de sécurité et vos plans de contingence pour le projet (par exemple, pourquoi vous avez mis en place telle mesure de sécurité).</span></label></li>
@@ -1242,7 +1262,7 @@ class AuthAPITest(TestCase):
             </div>
             <p class="text-sm mb-4 text-gray-300"><span id="progress-text-conseils">0%</span> Complété pour cette section.</p>
 
-            <ul class="space-y-3" data-progress-group="conseils">
+            <ul class="space-y-3 action-list" data-progress-group="conseils">
                 <li>
                     <label class="flex items-center space-x-3">
                         <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="conseils">
