@@ -115,6 +115,12 @@
             flex-shrink: 0; /* Prevent checkbox from shrinking */
             margin-top: 0.25rem; /* Adjust vertical alignment if needed */
         }
+        /* Navigation colors */
+        .nav-link-outils { background-color: var(--primary-blue); }
+        .nav-link-dossier1 { background-color: var(--accent-pink); }
+        .nav-link-dossier2 { background-color: var(--accent-purple); }
+        .nav-link-liens_blocs { background-color: var(--accent-teal); }
+        .nav-link-conseils { background-color: var(--primary-blue); } /* Revert to blue for consistency or choose another color */
     </style>
 </head>
 <body class="p-8">
@@ -154,11 +160,11 @@
         <!-- Navigation -->
         <nav class="mb-12">
             <ul class="flex flex-wrap justify-center space-x-4">
-                <li><a href="#outils" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">🛠️ Outils & Méthodes</a></li>
-                <li><a href="#dossier1" class="px-5 py-3 rounded-full bg-pink-700 hover:bg-pink-600 text-white font-semibold shadow-lg">📝 Dossier 1</a></li>
-                <li><a href="#dossier2" class="px-5 py-3 rounded-full bg-purple-700 hover:bg-purple-600 text-white font-semibold shadow-lg">💻 Dossier 2</a></li>
-                <li><a href="#liens_blocs" class="px-5 py-3 rounded-full bg-teal-700 hover:bg-teal-600 text-white font-semibold shadow-lg">🔗 Liens Blocs 1 & 2</a></li>
-                <li><a href="#conseils" class="px-5 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg">💡 Conseils</a></li>
+                <li><a href="#outils" class="px-5 py-3 rounded-full nav-link-outils hover:bg-blue-600 text-white font-semibold shadow-lg">🛠️ Outils & Méthodes</a></li>
+                <li><a href="#dossier1" class="px-5 py-3 rounded-full nav-link-dossier1 hover:bg-pink-600 text-white font-semibold shadow-lg">📝 Dossier 1</a></li>
+                <li><a href="#dossier2" class="px-5 py-3 rounded-full nav-link-dossier2 hover:bg-purple-600 text-white font-semibold shadow-lg">💻 Dossier 2</a></li>
+                <li><a href="#liens_blocs" class="px-5 py-3 rounded-full nav-link-liens_blocs hover:bg-teal-600 text-white font-semibold shadow-lg">🔗 Liens Blocs 1 & 2</a></li>
+                <li><a href="#conseils" class="px-5 py-3 rounded-full nav-link-conseils hover:bg-blue-500 text-white font-semibold shadow-lg">💡 Conseils</a></li>
             </ul>
         </nav>
 
@@ -489,8 +495,15 @@
                         <h4 class="text-xl font-medium mb-2">Framework Backend : Django (recommandé)</h4>
                         <label class="flex items-center space-x-3">
                             <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
-                            <span><strong class="font-bold">Justification</strong> : Django est un framework Python <strong class="font-bold">robuste, sécurisé et "batteries included"</strong>, ce qui signifie qu'il fournit de nombreux outils intégrés (ORM pour la base de données, système d'authentification, panneau d'administration). Cela accélère considérablement le développement et garantit la <strong class="font-bold">fiabilité et la sécurité</strong> de l'application. Sa capacité à gérer un <strong class="font-bold">grand nombre de requêtes</strong> est cruciale pour les millions d'appels attendus lors des Jeux Olympiques, assurant ainsi une <strong class="font-bold">scalabilité</strong> nécessaire.</span>
+                            <span><strong class="font-bold">Justification</strong> : Django est un framework Python <strong class="font-bold">robuste, sécurisé et "batteries included"</strong>, ce qui signifie qu'il fournit de nombreux outils intégrés :</span>
                         </label>
+                        <ul class="action-list ml-8 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3"><span>ORM (Object-Relational Mapper) pour la base de données.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3"><span>Système d'authentification et de gestion des utilisateurs.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3"><span>Panneau d'administration intégré.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3"><span>Fonctionnalités de sécurité intégrées (protection CSRF, XSS, etc.).</span></label></li>
+                        </ul>
+                        <p class="text-justify ml-8">Cela accélère considérablement le développement et garantit la <strong class="font-bold">fiabilité et la sécurité</strong> de l'application. Sa capacité à gérer un <strong class="font-bold">grand nombre de requêtes</strong> est cruciale pour les millions d'appels attendus lors des Jeux Olympiques, assurant ainsi une <strong class="font-bold">scalabilité</strong> nécessaire.</p>
                         <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_027_</span> (Cadre théorique de Django), <span class="font-semibold">B3_M08_028_</span> (Les modèles en Django), <span class="font-semibold">B3_M08_029_</span> (Les vues en Django).</p>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
@@ -498,8 +511,14 @@
                         <h4 class="text-xl font-medium mb-2">Frontend : HTML, CSS, JavaScript</h4>
                         <label class="flex items-center space-x-3">
                             <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
-                            <span><strong class="font-bold">Justification</strong> : Ces technologies sont les fondations du web. <strong class="font-bold">HTML</strong> structure le contenu des pages (offres, formulaires). <strong class="font-bold">CSS</strong> assure le design visuel et l'adaptation aux différents écrans (<strong class="font-bold">responsive design</strong>). <strong class="font-bold">JavaScript</strong> permet de rendre l'application <strong class="font-bold">dynamique et interactive</strong>, en communiquant avec le backend <strong class="font-bold">sans recharger la page</strong>. Cela offre une <strong class="font-bold">expérience utilisateur fluide et moderne</strong>, répondant au besoin d'un site internet performant pour les visiteurs des JO.</span>
+                            <span><strong class="font-bold">Justification</strong> : Ces technologies sont les fondations du web :</span>
                         </label>
+                        <ul class="action-list ml-8 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3"><span><strong class="font-bold">HTML</strong> structure le contenu des pages (offres, formulaires).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3"><span><strong class="font-bold">CSS</strong> assure le design visuel et l'adaptation aux différents écrans (<strong class="font-bold">responsive design</strong>).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3"><span><strong class="font-bold">JavaScript</strong> permet de rendre l'application <strong class="font-bold">dynamique et interactive</strong>, en communiquant avec le backend <strong class="font-bold">sans recharger la page</strong>.</span></label></li>
+                        </ul>
+                        <p class="text-justify ml-8">Cela offre une <strong class="font-bold">expérience utilisateur fluide et moderne</strong>, répondant au besoin d'un site internet performant pour les visiteurs des JO.</p>
                         <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_</span> (Créer un site web avec HTML, CSS et le Framework Bootstrap), <span class="font-semibold">B3_M05_</span> (Programmer avec Javascript).</p>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
@@ -571,119 +590,65 @@
                 <ul class="space-y-4 action-list" data-progress-group="d2-3-1">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Initialisation du Projet Backend (Python) :</h4>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Créez le dossier de votre projet</strong> (ex: <code class="bg-gray-700 p-1 rounded">billetterie_jo</code>).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Ouvrez ce dossier dans VS Code</strong>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Ouvrez le terminal intégré de VS Code</strong> (Ctrl+Shift+\` ou Terminal > New Terminal).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Créez et activez un environnement virtuel</strong> : <code class="bg-gray-700 p-1 rounded">python -m venv venv</code> puis <code class="bg-gray-700 p-1 rounded">source venv/bin/activate</code> (macOS/Linux) ou <code class="bg-gray-700 p-1 rounded">.\venv\Scripts\activate</code> (Windows).</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Créez le dossier de votre projet</strong> (ex: <code class="bg-gray-700 p-1 rounded">billetterie_jo</code>).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Ouvrez ce dossier dans VS Code</strong>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Ouvrez le terminal intégré de VS Code</strong> (Ctrl+Shift+\` ou Terminal > New Terminal).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Créez et activez un environnement virtuel</strong> : <code class="bg-gray-700 p-1 rounded">python -m venv venv</code> puis <code class="bg-gray-700 p-1 rounded">source venv/bin/activate</code> (macOS/Linux) ou <code class="bg-gray-700 p-1 rounded">.\venv\Scripts\activate</code> (Windows).</span></label></li>
+                        </ul>
                         <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_002_</span> (Environnements de travail).</p>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Installez votre framework Python</strong> (Django recommandé) : <code class="bg-gray-700 p-1 rounded">pip install Django psycopg2-binary</code> (pour PostgreSQL).</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Installez votre framework Python</strong> (Django recommandé) : <code class="bg-gray-700 p-1 rounded">pip install Django psycopg2-binary</code> (pour PostgreSQL).</span></label></li>
+                        </ul>
                         <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_</span> (Développer une application web avec Python).</p>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Initialisez le projet Django</strong> : <code class="bg-gray-700 p-1 rounded">django-admin startproject core .</code> puis <code class="bg-gray-700 p-1 rounded">python manage.py startapp tickets</code>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Ajoutez 'tickets' à INSTALLED_APPS</strong> dans <code class="bg-gray-700 p-1 rounded">core/settings.py</code>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Configurez votre base de données</strong> (PostgreSQL) dans <code class="bg-gray-700 p-1 rounded">core/settings.py</code>.</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Initialisez le projet Django</strong> : <code class="bg-gray-700 p-1 rounded">django-admin startproject core .</code> puis <code class="bg-gray-700 p-1 rounded">python manage.py startapp tickets</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Ajoutez 'tickets' à INSTALLED_APPS</strong> dans <code class="bg-gray-700 p-1 rounded">core/settings.py</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Configurez votre base de données</strong> (PostgreSQL) dans <code class="bg-gray-700 p-1 rounded">core/settings.py</code>.</span></label></li>
+                        </ul>
                         <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M06_</span> (Créer et administrer une base de données relationnelle).</p>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Effectuez les migrations initiales</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py migrate</code>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Créez un superutilisateur (administrateur)</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py createsuperuser</code>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Démarrez le serveur de développement</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py runserver</code> (vérifiez <code class="bg-gray-700 p-1 rounded">http://127.0.0.1:8000/</code>).</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Effectuez les migrations initiales</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py migrate</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Créez un superutilisateur (administrateur)</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py createsuperuser</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Démarrez le serveur de développement</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py runserver</code> (vérifiez <code class="bg-gray-700 p-1 rounded">http://127.0.0.1:8000/</code>).</span></label></li>
+                        </ul>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
                     <li>
                         <h4 class="text-xl font-medium mb-2">Définition des Modèles de Données (Backend Python) :</h4>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Ouvrez le fichier <code class="bg-gray-700 p-1 rounded">tickets/models.py</code></strong> (si Django).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Créez les classes Python</strong> pour <code class="bg-gray-700 p-1 rounded">User</code>, <code class="bg-gray-700 p-1 rounded">Offer</code>, <code class="bg-gray-700 p-1 rounded">Order</code>, <code class="bg-gray-700 p-1 rounded">Ticket</code>, <code class="bg-gray-700 p-1 rounded">AdminUser</code>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Définissez les relations</strong> entre ces modèles (One-to-Many, Many-to-Many).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Générez les migrations Django</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py makemigrations tickets</code>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Appliquez les migrations</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py migrate</code>.</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Ouvrez le fichier <code class="bg-gray-700 p-1 rounded">tickets/models.py</code></strong> (si Django).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Créez les classes Python</strong> pour <code class="bg-gray-700 p-1 rounded">User</code>, <code class="bg-gray-700 p-1 rounded">Offer</code>, <code class="bg-gray-700 p-1 rounded">Order</code>, <code class="bg-gray-700 p-1 rounded">Ticket</code>, <code class="bg-gray-700 p-1 rounded">AdminUser</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Définissez les relations</strong> entre ces modèles (One-to-Many, Many-to-Many).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Générez les migrations Django</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py makemigrations tickets</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Appliquez les migrations</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py migrate</code>.</span></label></li>
+                        </ul>
                         <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B3_M06_</span> (Créer et administrer une base de données relationnelle), <span class="font-semibold">B3_M08_028_</span> (Les modèles en Django).</p>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
                     <li>
                         <h4 class="text-xl font-medium mb-2">Création des APIs (Backend Python) :</h4>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Ouvrez le fichier <code class="bg-gray-700 p-1 rounded">tickets/views.py</code></strong> (si Django REST Framework).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Créez les vues (fonctions/classes) pour vos APIs</strong> : listage offres, création compte, authentification, réservation, gestion admin offres, visualisation ventes admin, vérification billets employé.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Définissez les URLs</strong> qui pointent vers ces vues dans <code class="bg-gray-700 p-1 rounded">core/urls.py</code> et <code class="bg-gray-700 p-1 rounded">tickets/urls.py</code>.</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Ouvrez le fichier <code class="bg-gray-700 p-1 rounded">tickets/views.py</code></strong> (si Django REST Framework).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Créez les vues (fonctions/classes) pour vos APIs</strong> : listage offres, création compte, authentification, réservation, gestion admin offres, visualisation ventes admin, vérification billets employé.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Définissez les URLs</strong> qui pointent vers ces vues dans <code class="bg-gray-700 p-1 rounded">core/urls.py</code> et <code class="bg-gray-700 p-1 rounded">tickets/urls.py</code>.</span></label></li>
+                        </ul>
                         <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B3_M10_</span> (Concevoir une API), <span class="font-semibold">B3_M08_030_</span> (API REST en Python).</p>
                         <p class="text-sm text-gray-400 ml-8 text-justify"><strong>Qui fait quoi (Backend)</strong> : Le backend (Django/Flask) reçoit les requêtes du frontend, interagit avec la base de données, exécute la logique métier (génération de clés, hachage des mots de passe, simulation de paiement), et renvoie les réponses au frontend.</p>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
                     <li>
                         <h4 class="text-xl font-medium mb-2">Développement du Frontend (HTML/CSS/JavaScript) :</h4>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Créez un dossier <code class="bg-gray-700 p-1 rounded">templates</code></strong> (si Django) et un dossier <code class="bg-gray-700 p-1 rounded">static</code> avec <code class="bg-gray-700 p-1 rounded">css</code> et <code class="bg-gray-700 p-1 rounded">js</code>.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Intégrez Bootstrap</strong> : Ajoutez les liens CDN pour Bootstrap dans vos fichiers HTML.</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Créez un dossier <code class="bg-gray-700 p-1 rounded">templates</code></strong> (si Django) et un dossier <code class="bg-gray-700 p-1 rounded">static</code> avec <code class="bg-gray-700 p-1 rounded">css</code> et <code class="bg-gray-700 p-1 rounded">js</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Intégrez Bootstrap</strong> : Ajoutez les liens CDN pour Bootstrap dans vos fichiers HTML.</span></label></li>
+                        </ul>
                         <p class="text-sm text-gray-400 ml-8">Lien : <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/#cdn-links" target="_blank" class="text-blue-400 hover:underline">Bootstrap CDN</a></p>
                         <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_018_</span> à <span class="font-semibold">B3_M03_021_</span>.</p>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Créez la structure de vos pages HTML</strong> : <code class="bg-gray-700 p-1 rounded">index.html</code>, <code class="bg-gray-700 p-1 rounded">offers.html</code>, <code class="bg-gray-700 p-1 rounded">cart.html</code>, <code class="bg-gray-700 p-1 rounded">auth.html</code>, <code class="bg-gray-700 p-1 rounded">admin.html</code>, <code class="bg-gray-700 p-1 rounded">ticket_confirmation.html</code>, <code class="bg-gray-700 p-1 rounded">employee_scan.html</code>.</span>
-                        </label>
-                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_001_</span> à <span class="font-semibold">B3_M03_005_</span>.</p>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Écrivez votre code JavaScript</strong> (<code class="bg-gray-700 p-1 rounded">static/js/main.js</code> par exemple) :</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Créez la structure de vos pages HTML</strong> : <code class="bg-gray-700 p-1 rounded">index.html</code>, <code class="bg-gray-700 p-1 rounded">offers.html</code>, <code class="bg-gray-700 p-1 rounded">cart.html</code>, <code class="bg-gray-700 p-1 rounded">auth.html</code>, <code class="bg-gray-700 p-1 rounded">admin.html</code>, <code class="bg-gray-700 p-1 rounded">ticket_confirmation.html</code>, <code class="bg-gray-700 p-1 rounded">employee_scan.html</code>.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Écrivez votre code JavaScript</strong> (<code class="bg-gray-700 p-1 rounded">static/js/main.js</code> par exemple) :</span></label></li>
+                        </ul>
                         <ul class="action-list ml-8 space-y-1">
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Requêtes Fetch/AJAX</strong> : Utilisez <code class="bg-gray-700 p-1 rounded">fetch()</code> pour communiquer avec les APIs de votre backend.</span></label></li>
                             <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Gestion des événements</strong> : Attachez des écouteurs d'événements aux boutons (ex: "Ajouter au panier", "Se connecter", "Payer").</span></label></li>
@@ -696,18 +661,11 @@
                     </li>
                     <li>
                         <h4 class="text-xl font-medium mb-2">Intégration et Tests Manuels :</h4>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Vérifiez la communication</strong> : Assurez-vous que le frontend peut bien appeler toutes les APIs du backend et recevoir les réponses attendues.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Testez tous les parcours utilisateur</strong> : De la navigation à l'achat de billet, à la connexion, à la gestion admin.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
-                            <span><strong class="font-bold">Vérifiez la réactivité du design</strong> sur différentes tailles d'écran.</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Vérifiez la communication</strong> : Assurez-vous que le frontend peut bien appeler toutes les APIs du backend et recevoir les réponses attendues.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Testez tous les parcours utilisateur</strong> : De la navigation à l'achat de billet, à la connexion, à la gestion admin.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Vérifiez la réactivité du design</strong> sur différentes tailles d'écran.</span></label></li>
+                        </ul>
                         <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B3_M03_016_</span> (Le responsive design), <span class="font-semibold">B3_M03_017_</span> (Valider la qualité de son site).</p>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
@@ -872,46 +830,23 @@ Offre "1" -- "0..N" Billet : est_base_sur
                 <ul class="space-y-3 action-list" data-progress-group="d2-3-3">
                     <li>
                         <h4 class="text-xl font-medium mb-2">Assurez-vous que votre tableau Trello est à jour :</h4>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Toutes les User Stories et tâches du Bloc 3 sont créées comme des cartes dans Trello.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Chaque carte a une <strong class="font-bold">DoR</strong> et une <strong class="font-bold">DoD</strong> définies via des checklists.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Les cartes ont été déplacées entre les listes (<code class="bg-gray-700 p-1 rounded">Backlog</code>, <code class="bg-gray-700 p-1 rounded">À Faire</code>, <code class="bg-gray-700 p-1 rounded">En Cours</code>, <code class="bg-gray-700 p-1 rounded">En Revue/Test</code>, <code class="bg-gray-700 p-1 rounded">Terminé</code>) au fur et à mesure de votre avancement.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Vous avez ajouté des dates d'échéance aux cartes importantes.</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Vous avez assigné des membres (même si c'est juste vous).</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Toutes les User Stories et tâches du Bloc 3 sont créées comme des cartes dans Trello.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Chaque carte a une <strong class="font-bold">DoR</strong> et une <strong class="font-bold">DoD</strong> définies via des checklists.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Les cartes ont été déplacées entre les listes (<code class="bg-gray-700 p-1 rounded">Backlog</code>, <code class="bg-gray-700 p-1 rounded">À Faire</code>, <code class="bg-gray-700 p-1 rounded">En Cours</code>, <code class="bg-gray-700 p-1 rounded">En Revue/Test</code>, <code class="bg-gray-700 p-1 rounded">Terminé</code>) au fur et à mesure de votre avancement.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Vous avez ajouté des dates d'échéance aux cartes importantes.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Vous avez assigné des membres (même si c'est juste vous).</span></label></li>
+                        </ul>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
                     <li>
                         <h4 class="text-xl font-medium mb-2">Rédigez une section dans votre rapport expliquant :</h4>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Pourquoi vous avez choisi <strong class="font-bold">Kanban</strong> et <strong class="font-bold">Trello</strong> pour ce projet (simplicité, visibilité, flexibilité).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Comment vous avez structuré votre tableau (les noms de vos listes).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Comment vous avez appliqué les concepts de <strong class="font-bold">DoR</strong> et <strong class="font-bold">DoD</strong> (expliquez-les et donnez des exemples concrets de checklists sur vos cartes).</span>
-                        </label>
-                        <label class="flex items-center space-x-3">
-                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
-                            <span>Comment vous avez suivi l'avancement du projet grâce à Trello.</span>
-                        </label>
+                        <ul class="action-list ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Pourquoi vous avez choisi <strong class="font-bold">Kanban</strong> et <strong class="font-bold">Trello</strong> pour ce projet (simplicité, visibilité, flexibilité).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Comment vous avez structuré votre tableau (les noms de vos listes).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Comment vous avez appliqué les concepts de <strong class="font-bold">DoR</strong> et <strong class="font-bold">DoD</strong> (expliquez-les et donnez des exemples concrets de checklists sur vos cartes).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3"><span>Comment vous avez suivi l'avancement du projet grâce à Trello.</span></label></li>
+                        </ul>
                         <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
                     </li>
                     <li>
