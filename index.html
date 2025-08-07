@@ -17,6 +17,7 @@
             --accent-pink: #ec4899; /* Tailwind pink-500 */
             --accent-purple: #8b5cf6; /* Tailwind purple-500 */
             --accent-teal: #14b8a6; /* Tailwind teal-500 */
+            --accent-orange: #f97316; /* Tailwind orange-500 for new tab */
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -119,6 +120,7 @@
         .nav-link-outils { background-color: var(--primary-blue); }
         .nav-link-dossier1 { background-color: var(--accent-pink); }
         .nav-link-dossier2 { background-color: var(--accent-purple); }
+        .nav-link-suivi-b3-m08 { background-color: var(--accent-orange); } /* New color for B3_M08 tab */
         .nav-link-liens_blocs { background-color: var(--accent-teal); }
         .nav-link-conseils { background-color: var(--primary-blue); } /* Revert to blue for consistency or choose another color */
     </style>
@@ -163,6 +165,7 @@
                 <li><a href="#outils" class="px-5 py-3 rounded-full nav-link-outils hover:bg-blue-600 text-white font-semibold shadow-lg">🛠️ Outils & Méthodes</a></li>
                 <li><a href="#dossier1" class="px-5 py-3 rounded-full nav-link-dossier1 hover:bg-pink-600 text-white font-semibold shadow-lg">📝 Dossier 1</a></li>
                 <li><a href="#dossier2" class="px-5 py-3 rounded-full nav-link-dossier2 hover:bg-purple-600 text-white font-semibold shadow-lg">💻 Dossier 2</a></li>
+                <li><a href="#suivi_b3_m08" class="px-5 py-3 rounded-full nav-link-suivi-b3-m08 hover:bg-orange-600 text-white font-semibold shadow-lg">🐍 Suivi B3_M08</a></li>
                 <li><a href="#liens_blocs" class="px-5 py-3 rounded-full nav-link-liens_blocs hover:bg-teal-600 text-white font-semibold shadow-lg">🔗 Liens Blocs 1 & 2</a></li>
                 <li><a href="#conseils" class="px-5 py-3 rounded-full nav-link-conseils hover:bg-blue-500 text-white font-semibold shadow-lg">💡 Conseils</a></li>
             </ul>
@@ -1147,6 +1150,61 @@ class AuthAPITest(TestCase):
                 </ul>
                 <p class="text-sm text-gray-400 mt-4">Réf. Modules : <span class="font-semibold">B3_M03_025_</span> (Déployer son site sur le Web) et <span class="font-semibold">B3_M08_026_</span> (Déploiement en ligne du site Flask/Django).</p>
             </div>
+        </section>
+
+        <!-- Nouvelle Section pour B3_M08 -->
+        <section id="suivi_b3_m08" class="card p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 section-header" style="color: var(--accent-orange);">🐍 Suivi B3_M08_ Module : Développer une application web avec Python</h2>
+            <p class="mb-4 text-justify">Cette section vous permet de suivre votre progression dans la lecture des PDF et la montée en compétence pour les thèmes du module **B3_M08_ Développer une application web avec Python**.</p>
+
+            <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                <div id="progress-b3-m08" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+            </div>
+            <p class="text-sm mb-4 text-gray-300"><span id="progress-text-b3-m08">0%</span> Complété pour ce module.</p>
+
+            <ul class="space-y-3 action-list" data-progress-group="b3-m08">
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_001_ L'interpréteur_de_commande_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_002_ Environnements_de_travail</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_003_ Les_variables_et_types_de_donnees</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_004_ Chaine_de_caracteres_en_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_005_ Structures_de_controle</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_006_ Les_structures_de_donnees_en_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_007_ Structure_d'un_programme_-_fonctions</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_008_ Ameliorer_la_qualite_du_code</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_009_ Structure_d'un_programme_-_modules</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_010_ Ameliorer_la_qualite_du_code_-_les_tests_unitaires</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_011_ Notion_theorique_de_classe</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_012_ Constructeur_et_mot-cle_self</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_013_ Les_methodes_speciales</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_014_ L'heritage</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_015_ La_notion_de_decorateur_en_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_016_ Gestion_du_temps_en_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_017_ Mathematiques_en_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_018_ Notebooks_python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_019_ Notions_avancees_de_visualisation</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_010_ Gestion_des_fichiers_en_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_021_ Les_Requetes_HTTP</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_022_ Les_bases_de_donnees_relationnelles_et_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_023_ Notion_d'ORM_(object-relational_mapping)</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_024_ Cadre_theorique_de_Flask</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_025_ Le_moteur_de_template_Jinja</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_026_ Deploiement_en_ligne_du_site_Flask</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_027_ Cadre_theorique_de_Django</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_028_ Les_modeles_en_Django</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_029_ Les_vues_en_Django</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_030_ API_REST_en_Python</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_031_ La_presentation_des_donnees_et_des_librairies</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_032_ La_librairie_numpy</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_033_ La_librairie_pandas _ premiere_approche</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_034_ Aller_plus_loin_avec_la_librairie_pandas</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_035_ La_librairie_matplotlib</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_036_ La_librairie_Seaborn</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_037_ La_librairie_Bokeh_et_Folium</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_038_ La_data_visualisation_avec_Streamlit</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_039_ Des_presentations_de_resultats_impactantes</span></label></li>
+                <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="b3-m08"><span>B3_M08_040_ Application _ Developper_une_application_web_avec_Python</span></label></li>
+            </ul>
+            <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
         </section>
 
         <!-- Section Lien avec Blocs 1 et 2 -->
