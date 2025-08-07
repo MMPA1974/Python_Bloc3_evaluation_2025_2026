@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi Bloc 3 - Mathilde PAISLEY</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3b82f6; /* Tailwind blue-500 */
+            --dark-background: #1a202c; /* Dark gray */
+            --dark-card: #2d3748; /* Slightly lighter dark gray */
+            --text-light: #e2e8f0; /* Light gray */
+            --progress-bar-bg: #4a5568; /* Medium gray */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-background);
+            color: var(--text-light);
+        }
+        .progress-bar-fill {
+            background-color: var(--primary-blue);
+            transition: width 0.5s ease-in-out;
+        }
+        .card {
+            background-color: var(--dark-card);
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+        .section-header {
+            color: var(--primary-blue);
+        }
+        input[type="checkbox"] {
+            accent-color: var(--primary-blue);
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 0.25rem;
+        }
+        textarea {
+            background-color: var(--dark-background);
+            color: var(--text-light);
+            border: 1px solid var(--progress-bar-bg);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            resize: vertical;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--dark-card);
+            color: var(--text-light);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the text */
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark-card) transparent transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: none; /* Hidden by default */
+            z-index: 1000;
+        }
+        .text-justify {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-5xl font-extrabold text-center mb-12 section-header">
+            🚀 Suivi Bloc 3 - Bachelor Développeur d'application Python 2022-2027
+        </h1>
+
+        <!-- Page d'Accueil -->
+        <div id="home" class="card p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 section-header">Bienvenue, Mathilde PAISLEY ! 👋</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">Progression Globale du Bloc 3</h3>
+                    <div class="w-full bg-gray-600 rounded-full h-4">
+                        <div id="global-progress-bar" class="progress-bar-fill h-4 rounded-full" style="width: 0%;"></div>
+                    </div>
+                    <p class="text-sm mt-2 text-gray-300"><span id="global-progress-text">0%</span> Complété</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">Dates Clés de l'Évaluation</h3>
+                    <p class="text-sm">🗓️ Début du suivi : <span id="start-date"></span></p>
+                    <p class="text-sm">🎯 1er Dépôt (Correction) : <span id="first-submission-date" class="font-bold"></span></p>
+                    <p class="text-sm">✅ Validation Finale : <span id="final-validation-date" class="font-bold"></span></p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">Liens Rapides</h3>
+                    <p class="text-sm">🔗 Mon Trello : <a href="https://trello.com/invite/b/68949a83ff107f6f81eff800/ATTI95c7235630a89215cc133e3a6536a082EBDB1737/python" target="_blank" class="text-blue-400 hover:underline">Voir le tableau</a></p>
+                    <p class="text-sm">🐙 Mon GitHub : <a href="https://github.com/MMPA1974" target="_blank" class="text-blue-400 hover:underline">Voir le profil</a></p>
+                </div>
+            </div>
+            <p class="text-lg text-gray-300 text-justify">
+                Bienvenue sur votre espace de suivi personnalisé pour le Bloc 3. Ce guide est conçu pour vous accompagner pas à pas dans chaque tâche, en vous fournissant les détails nécessaires pour ne rien oublier et optimiser votre préparation. Cochez les cases au fur et à mesure pour suivre votre progression !
+            </p>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="mb-12">
+            <ul class="flex flex-wrap justify-center space-x-4">
+                <li><a href="#outils" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">🛠️ Outils & Méthodes</a></li>
+                <li><a href="#dossier1" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">📝 Dossier 1</a></li>
+                <li><a href="#dossier2" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">💻 Dossier 2</a></li>
+                <li><a href="#liens_blocs" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">🔗 Liens Blocs 1 & 2</a></li>
+                <li><a href="#conseils" class="px-5 py-3 rounded-full bg-blue-700 hover:bg-blue-600 text-white font-semibold shadow-lg">💡 Conseils</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenu Détaillé -->
+
+        <section id="outils" class="card p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 section-header">🛠️ 1. Outils et Méthodes Essentiels pour le Bloc 3</h2>
+            <p class="mb-4 text-justify">Voici la liste des outils et méthodes que vous allez utiliser, avec des liens et des procédures spécifiques pour votre MacBook Pro M1 2021.</p>
+
+            <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.1. Environnement de Développement et Langages</h3>
+            <ul class="space-y-4 mb-6">
+                <li>
+                    <h4 class="text-xl font-medium">Langage de Programmation Backend : Python</h4>
+                    <p>Outil : <strong class="font-bold">Python 3.x</strong> (dernière version stable recommandée).</p>
+                    <p>Lien de téléchargement : <a href="https://www.python.org/downloads/" target="_blank" class="text-blue-400 hover:underline">Télécharger Python</a></p>
+                    <p class="text-justify">Procédure pour macOS M1 : Téléchargez l'installeur "macOS 64-bit universal2 installer" depuis le site officiel de Python. Il est optimisé pour les puces Apple Silicon (M1/M2/M3). Suivez les étapes d'installation.</p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M08_001_ (L'interpréteur de commande Python), B3_M08_002_ (Environnements de travail).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Framework Web Backend : Django (recommandé) ou Flask</h4>
+                    <p>Outil : <strong class="font-bold">Django</strong> (ou Flask).</p>
+                    <p>Installation (via <code class="bg-gray-700 p-1 rounded">pip</code>, après avoir activé votre environnement virtuel) :</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Pour Django : <code class="bg-gray-700 p-1 rounded">pip install Django djangorestframework</code></li>
+                        <li>Pour Flask : <code class="bg-gray-700 p-1 rounded">pip install Flask</code></li>
+                    </ul>
+                    <p>Lien Doc : <a href="https://docs.djangoproject.com/en/5.0/" target="_blank" class="text-blue-400 hover:underline">Django Documentation</a> / <a href="https://flask.palletsprojects.com/en/3.0/" target="_blank" class="text-blue-400 hover:underline">Flask Documentation</a></p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M08_024_ (Cadre théorique de Flask), B3_M08_027_ (Cadre théorique de Django).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Langages Frontend : HTML, CSS, JavaScript</h4>
+                    <p>Outil : Aucun téléchargement spécifique, ils sont interprétés par le navigateur.</p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M03_ (Créer un site web avec HTML, CSS et le Framework Bootstrap), B3_M05_ (Programmer avec Javascript).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Framework CSS Frontend : Bootstrap</h4>
+                    <p>Outil : Intégration via CDN (Content Delivery Network) dans votre code HTML.</p>
+                    <p>Lien Doc : <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" class="text-blue-400 hover:underline">Bootstrap Documentation</a></p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M03_018_ à B3_M03_021_ (L'installation et la prise en main du framework Bootstrap).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Environnement de Développement Intégré (IDE) : VS Code</h4>
+                    <p>Outil : <strong class="font-bold">Visual Studio Code (VS Code)</strong>.</p>
+                    <p>Lien de téléchargement : <a href="https://code.visualstudio.com/download" target="_blank" class="text-blue-400 hover:underline">Télécharger VS Code</a></p>
+                    <p class="text-justify">Procédure pour macOS M1 : Téléchargez la version "Apple Silicon" de VS Code. Installez-le, puis ajoutez les extensions Python et d'autres extensions utiles (ex: Prettier pour le formatage, Live Server pour le frontend).</p>
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.2. Bases de Données</h3>
+            <ul class="space-y-4 mb-6">
+                <li>
+                    <h4 class="text-xl font-medium">Base de Données Relationnelle : PostgreSQL (recommandé)</h4>
+                    <p>Outil : PostgreSQL (le serveur de base de données).</p>
+                    <p>Lien de téléchargement : <a href="https://www.postgresql.org/download/" target="_blank" class="text-blue-400 hover:underline">PostgreSQL Downloads</a></p>
+                    <p class="text-justify">Procédure pour macOS : Utilisez l'installeur graphique fourni sur le site de PostgreSQL, ou installez via Homebrew (<code class="bg-gray-700 p-1 rounded">brew install postgresql</code>) qui est un gestionnaire de paquets très pratique sur macOS. Vous aurez aussi besoin d'un outil pour l'administrer (ex: pgAdmin).</p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M06_ (Créer et administrer une base de données relationnelle).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Base de Données Non-Relationnelle : MongoDB (si besoin)</h4>
+                    <p>Outil : MongoDB Community Server.</p>
+                    <p>Lien de téléchargement : <a href="https://www.mongodb.com/try/download/community" target="_blank" class="text-blue-400 hover:underline">MongoDB Community Server</a></p>
+                    <p class="text-justify">Procédure pour macOS : Téléchargez le package correspondant à votre architecture (ARM64 pour M1) et suivez les instructions.</p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M07_ (Créer et administrer une base de données non relationnelle).</p>
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.3. Gestion de Projet et Versioning</h3>
+            <ul class="space-y-4 mb-6">
+                <li>
+                    <h4 class="text-xl font-medium">Outil de Gestion de Projet : Trello</h4>
+                    <p>Outil : <strong class="font-bold">Trello</strong>.</p>
+                    <p>Lien : <a href="https://trello.com/" target="_blank" class="text-blue-400 hover:underline">Trello</a></p>
+                    <p class="text-sm text-gray-400">Réf. Module : B2_M03_ (Utiliser l'outil Agile : Kanban), B2_M04_ (Manager et piloter les tâches avec ses équipes projet grâce à TRELLO).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Système de Contrôle de Version : Git</h4>
+                    <p>Outil : <strong class="font-bold">Git</strong>.</p>
+                    <p>Lien de téléchargement : <a href="https://git-scm.com/downloads" target="_blank" class="text-blue-400 hover:underline">Git Downloads</a></p>
+                    <p class="text-justify">Procédure pour macOS : Vous pouvez l'installer via Homebrew (<code class="bg-gray-700 p-1 rounded">brew install git</code>) ou télécharger l'installeur direct. Git est souvent préinstallé sur macOS.</p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M12_001_ (Introduction à la ligne de commande), B3_M12_002_ (Introduction à Git et Github).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Plateforme d'hébergement de dépôt Git : GitHub</h4>
+                    <p>Outil : <strong class="font-bold">GitHub</strong> (compte en ligne).</p>
+                    <p>Lien : <a href="https://github.com/" target="_blank" class="text-blue-400 hover:underline">GitHub</a></p>
+                    <p>Votre profil GitHub : <a href="https://github.com/MMPA1974" target="_blank" class="text-blue-400 hover:underline">https://github.com/MMPA1974</a></p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M12_002_ (Introduction à Git et Github).</p>
+                </li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-4 text-blue-400">1.4. Tests et Déploiement</h3>
+            <ul class="space-y-4">
+                <li>
+                    <h4 class="text-xl font-medium">Framework de Tests Python : Pytest</h4>
+                    <p>Outil : <strong class="font-bold">Pytest</strong> et <strong class="font-bold">pytest-cov</strong> (pour la couverture de code).</p>
+                    <p>Installation : <code class="bg-gray-700 p-1 rounded">pip install pytest pytest-cov</code></p>
+                    <p>Lien Doc : <a href="https://docs.pytest.org/en/stable/" target="_blank" class="text-blue-400 hover:underline">Pytest Documentation</a></p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M08_010_ (Améliorer la qualité du code - les tests unitaires).</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Générateur de QR Code (JavaScript)</h4>
+                    <p>Outil : Une bibliothèque JavaScript comme <strong class="font-bold">qrcode.js</strong> ou <strong class="font-bold">qrious</strong>.</p>
+                    <p>Lien Doc (exemple qrcode.js) : <a href="https://github.com/davidshimjs/qrcodejs" target="_blank" class="text-blue-400 hover:underline">qrcode.js GitHub</a></p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-medium">Plateforme de Déploiement : fly.io (ou Heroku)</h4>
+                    <p>Outil : Compte sur la plateforme choisie et leur CLI (Command Line Interface).</p>
+                    <p>Lien fly.io : <a href="https://fly.io/" target="_blank" class="text-blue-400 hover:underline">fly.io</a></p>
+                    <p>Lien Heroku : <a href="https://www.heroku.com/" target="_blank" class="text-blue-400 hover:underline">Heroku</a></p>
+                    <p class="text-sm text-gray-400">Réf. Module : B3_M03_025_ (Déployer son site sur le Web), B3_M08_026_ (Déploiement en ligne du site Flask/Django).</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section Dossier 1 -->
+        <section id="dossier1" class="card p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 section-header">📝 2. Dossier 1 : Spécifier une solution digitale (Rapport écrit - Partie 1)</h2>
+            <p class="mb-4 text-justify">Cette section correspond au Dossier 1 de votre "Copie à rendre".</p>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">2.1. Énumérez toutes les fonctionnalités attendues par le client sous forme d'User Story (agilité)</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Transformer les besoins bruts du client en petites unités de travail claires et compréhensibles pour l'équipe de développement.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : Cela montre votre capacité à formaliser les besoins de manière agile, une compétence clé vue en <span class="text-blue-400 font-semibold">B1_M02_</span> et <span class="text-blue-400 font-semibold">B1_M05_</span>.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d1-2-1" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d1-2-1">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d1-2-1">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Page d'accueil et offres :</h4>
+                        <label class="flex items-center space-x-3 mb-2">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant que <strong class="font-bold">visiteur</strong>, je veux <strong class="font-bold">voir une page d'accueil présentant les Jeux Olympiques et des épreuves</strong> afin de <strong class="font-bold">découvrir l'événement et m'orienter sur le site</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant que <strong class="font-bold">visiteur</strong>, je veux <strong class="font-bold">voir une page listant toutes les offres de tickets (solo, duo, familiale)</strong> afin de <strong class="font-bold">choisir l'option qui me convient le mieux</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Panier et réservation :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant que <strong class="font-bold">visiteur</strong>, je veux <strong class="font-bold">pouvoir sélectionner une offre et l'ajouter à mon panier</strong> afin de <strong class="font-bold">préparer ma commande de billets</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Authentification et compte :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant que <strong class="font-bold">visiteur</strong>, je veux <strong class="font-bold">créer un compte avec mon nom, prénom, e-mail et un mot de passe sécurisé</strong> afin de <strong class="font-bold">finaliser ma réservation et accéder à mon espace personnel</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant que <strong class="font-bold">visiteur</strong>, je veux <strong class="font-bold">me connecter à mon compte existant</strong> afin de <strong class="font-bold">finaliser ma réservation ou consulter mes informations</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">utilisateur</strong>, je veux <strong class="font-bold">consulter et modifier mes informations personnelles</strong> afin de <strong class="font-bold">maintenir mon profil à jour</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">utilisateur</strong>, je veux <strong class="font-bold">consulter l'historique de mes commandes</strong> afin de <strong class="font-bold">retrouver mes achats précédents</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">utilisateur</strong>, je veux <strong class="font-bold">télécharger mes e-tickets</strong> afin de <strong class="font-bold">les avoir à disposition pour l'événement</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Paiement (simulé) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">utilisateur</strong>, je veux <strong class="font-bold">simuler le paiement de mon billet</strong> afin de <strong class="font-bold">finaliser ma transaction</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Génération et vérification des billets :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant que <strong class="font-bold">système</strong>, je veux <strong class="font-bold">générer une clé unique lors de la création du compte</strong> afin de <strong class="font-bold">sécuriser l'identité de l'utilisateur</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant que <strong class="font-bold">système</strong>, je veux <strong class="font-bold">générer une deuxième clé unique lors de l'achat du billet et la concaténer avec la clé du compte</strong> afin de <strong class="font-bold">créer une clé finale sécurisée pour l'e-billet</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">utilisateur</strong>, je veux <strong class="font-bold">recevoir un QR Code (e-billet) basé sur la clé finale</strong> afin de <strong class="font-bold">pouvoir accéder aux Jeux Olympiques</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">employé du contrôle d'accès</strong>, je veux <strong class="font-bold">scanner le QR Code du e-billet</strong> afin de <strong class="font-bold">vérifier son authenticité et l'identité du titulaire</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Fonctionnalités Administrateur :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">administrateur</strong>, je veux <strong class="font-bold">visualiser, ajouter, modifier ou créer de nouvelles offres de tickets</strong> afin de <strong class="font-bold">gérer dynamiquement la billetterie</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-1">
+                            <span>En tant qu'<strong class="font-bold">administrateur</strong>, je veux <strong class="font-bold">visualiser le nombre de ventes par offre</strong> afin de <strong class="font-bold">suivre la performance de la billetterie</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">2.2. Quels sont les éléments que vous allez sécuriser ? Comment allez-vous procéder ?</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Démontrer une compréhension approfondie des enjeux de sécurité liés au projet et proposer des mesures concrètes pour y faire face.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : La sécurité est une préoccupation majeure du client. Montrer une approche structurée est crucial.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d1-2-2" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d1-2-2">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d1-2-2">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Protection des données personnelles :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Conformité RGPD</strong> : Expliquez que vous respectez le principe de minimisation (collecte du strict nécessaire), le consentement, et les droits des utilisateurs (accès, modification, suppression).</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B1_M11_002_</span> à <span class="font-semibold">B1_M11_010_</span> (Le droit du web).</p>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Hachage des mots de passe</strong> : Ne stockez jamais les mots de passe en clair. Utilisez un algorithme de hachage fort comme <strong class="font-bold">bcrypt</strong> (souvent intégré dans les frameworks Python comme Django). Le backend Python hache le mot de passe avant de le stocker en base de données.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Cryptage des données sensibles</strong> : Les informations de paiement ou les clés de sécurité stockées dans la base de données peuvent être cryptées. Utilisez des fonctionnalités de cryptage de la base de données ou de bibliothèques Python. Le backend Python crypte/décrypte les données avant/après l'interaction avec la base de données.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Sécurité des comptes utilisateurs :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Politique de mot de passe forte</strong> : Définissez des règles (longueur minimale, caractères spéciaux, majuscules/minuscules, chiffres). Le frontend peut valider la politique côté client, mais le backend doit impérativement la valider aussi avant stockage.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Authentification forte (2FA - Deux Facteurs)</strong> : Proposez l'intégration conceptuelle d'un 2FA avec des outils comme <strong class="font-bold">Google Authenticator</strong> ou <strong class="font-bold">Authy</strong>. Le backend interagit avec le service 2FA pour envoyer/vérifier les codes.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Limitation des tentatives de connexion</strong> : Mettez en place une "Account lockout policy" (gérée par le backend) qui compte les tentatives et bloque temporairement l'utilisateur après un seuil.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Processus de réinitialisation sécurisé</strong> : Utilisez des jetons à usage unique et des liens à durée limitée. Le backend génère et valide les jetons, le frontend gère l'interface utilisateur.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Détection des activités suspectes</strong> : Expliquez la surveillance des comportements anormaux avec des outils comme <strong class="font-bold">Microsoft Azure ATP</strong>, <strong class="font-bold">Google Cloud Chronicle</strong>, <strong class="font-bold">AWS CloudTrail</strong>. Ces outils externes surveillent les logs de l'application déployée.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Sécurisation des transactions financières (même simulées) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Passerelles de paiement sécurisées</strong> : Utilisez des services tiers conformes PCI DSS comme <strong class="font-bold">Stripe</strong>, <strong class="font-bold">PayPal</strong>, <strong class="font-bold">Amazon Pay</strong>, <strong class="font-bold">Authorize.net</strong>. Le frontend collecte les informations (simulées), le backend les transmet à la passerelle de paiement (simulée). La passerelle gère la sécurité des données bancaires.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M11_001_</span> à <span class="font-semibold">B3_M11_004_</span> (Utiliser des API).</p>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Prévention de la fraude</strong> : Mettez en place des mécanismes de détection avec des outils comme <strong class="font-bold">Signifyd</strong>, <strong class="font-bold">Sift Science</strong>, <strong class="font-bold">Forterro</strong>, <strong class="font-bold">Fraud.net</strong>. Ces services externes analysent les transactions en temps réel.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Sécurisation des e-tickets :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Cryptographie des e-tickets</strong> : Les clés générées seront utilisées pour signer cryptographiquement le billet, garantissant son authenticité et son intégrité. Le backend Python génère les clés et la concaténation. La bibliothèque de QR Code (frontend) utilise cette clé finale.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Mesures de sécurité générales de l'application :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Tests de vulnérabilité et d'intrusion</strong> : Planifiez des audits réguliers avec des outils comme <strong class="font-bold">OWASP ZAP</strong> ou <strong class="font-bold">Nessus</strong>. Ces outils sont utilisés par des experts en sécurité pour tester votre application déployée.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-2">
+                            <span><strong class="font-bold">Plan de réponse aux incidents</strong> : Décrivez une procédure en cas de problème de sécurité avec un outil comme <strong class="font-bold">Jira Service Management</strong>. L'équipe de projet utilise cet outil pour suivre et résoudre les incidents.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4 text-justify">Réf. Modules : <span class="font-semibold">B1_M03_</span> (Définir les options techniques), <span class="font-semibold">B1_M06_</span> (Concevoir une solution digitale - analyse des risques), <span class="font-semibold">B1_M11_</span> (Droit du web). En Bloc 2, <span class="font-semibold">B2_M08_</span> (Tester son application Web) et <span class="font-semibold">B2_M09_</span> (Réaliser des tests fonctionnels) sont essentiels pour la validation de ces mesures.</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">2.3. Évoquez les choix techniques que vous avez choisis concernant votre application et justifiez-les (tout en faisant référence au besoin client)</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Expliquer pourquoi vous avez choisi chaque outil ou technologie, en montrant comment cela répond aux besoins spécifiques du projet de billetterie des JO.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : Cela démontre votre capacité à prendre des décisions techniques éclairées, une compétence fondamentale en développement.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d1-2-3" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d1-2-3">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d1-2-3">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Langage Backend : Python</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : Python est choisi pour sa <strong class="font-bold">simplicité et sa lisibilité</strong>, ce qui permet un <strong class="font-bold">développement rapide</strong> et une <strong class="font-bold">maintenance aisée</strong>. Sa grande communauté et ses nombreuses bibliothèques (comme celles pour la cryptographie ou les QR codes) en font un choix <strong class="font-bold">efficace et performant</strong> pour le backend de notre application de billetterie. C'est également le langage principal de ma formation, assurant ma <strong class="font-bold">maîtrise technique</strong>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_</span> (Développer une application web avec Python).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Framework Backend : Django (recommandé)</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : Django est un framework Python <strong class="font-bold">robuste, sécurisé et "batteries included"</strong>, ce qui signifie qu'il fournit de nombreux outils intégrés (ORM pour la base de données, système d'authentification, panneau d'administration). Cela accélère considérablement le développement et garantit la <strong class="font-bold">fiabilité et la sécurité</strong> de l'application. Sa capacité à gérer un <strong class="font-bold">grand nombre de requêtes</strong> est cruciale pour les millions d'appels attendus lors des Jeux Olympiques, assurant ainsi une <strong class="font-bold">scalabilité</strong> nécessaire.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_027_</span> (Cadre théorique de Django), <span class="font-semibold">B3_M08_028_</span> (Les modèles en Django), <span class="font-semibold">B3_M08_029_</span> (Les vues en Django).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Frontend : HTML, CSS, JavaScript</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : Ces technologies sont les fondations du web. <strong class="font-bold">HTML</strong> structure le contenu des pages (offres, formulaires). <strong class="font-bold">CSS</strong> assure le design visuel et l'adaptation aux différents écrans (<strong class="font-bold">responsive design</strong>). <strong class="font-bold">JavaScript</strong> permet de rendre l'application <strong class="font-bold">dynamique et interactive</strong>, en communiquant avec le backend <strong class="font-bold">sans recharger la page</strong>. Cela offre une <strong class="font-bold">expérience utilisateur fluide et moderne</strong>, répondant au besoin d'un site internet performant pour les visiteurs des JO.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_</span> (Créer un site web avec HTML, CSS et le Framework Bootstrap), <span class="font-semibold">B3_M05_</span> (Programmer avec Javascript).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Framework CSS : Bootstrap</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : Bootstrap est un framework CSS qui fournit des composants préconçus et un système de grille pour créer des interfaces <strong class="font-bold">responsives et esthétiques rapidement</strong>. Il assure que l'application de billetterie sera <strong class="font-bold">accessible et visuellement agréable sur tous les types d'appareils</strong> (ordinateurs, tablettes, smartphones), garantissant une <strong class="font-bold">expérience utilisateur optimale</strong> pour tous les spectateurs des JO, quel que soit leur équipement.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_018_</span> à <span class="font-semibold">B3_M03_021_</span> (L'installation et la prise en main du framework Bootstrap).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Base de données relationnelle : PostgreSQL</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : PostgreSQL est un SGBDR <strong class="font-bold">très fiable, performant et conforme aux normes ACID</strong> (Atomicité, Cohérence, Isolation, Durabilité). Il est idéal pour stocker les <strong class="font-bold">données structurées critiques</strong> de la billetterie (utilisateurs, offres, commandes, billets) et garantir l'<strong class="font-bold">intégrité des transactions</strong>. Sa robustesse et sa capacité à gérer de <strong class="font-bold">grands volumes de données</strong> sont indispensables pour un événement de l'ampleur des Jeux Olympiques.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M06_</span> (Créer et administrer une base de données relationnelle).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Base de données non-relationnelle : MongoDB (si applicable)</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : MongoDB, en tant que base de données NoSQL orientée document, offre une <strong class="font-bold">grande flexibilité</strong> pour stocker des données moins structurées ou des logs (par exemple, des détails d'e-tickets complexes ou des journaux d'activité). Elle permet une <strong class="font-bold">scalabilité horizontale</strong> plus facile, complétant PostgreSQL pour gérer les <strong class="font-bold">volumes massifs de données</strong> et les <strong class="font-bold">besoins d'évolution rapide</strong> du projet.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M07_</span> (Créer et administrer une base de données non relationnelle).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Système de Contrôle de Version : Git et GitHub</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : Git est un système de contrôle de version <strong class="font-bold">indispensable pour le travail collaboratif et le suivi des modifications du code</strong>. GitHub fournit une <strong class="font-bold">plateforme d'hébergement publique</strong> pour notre dépôt, facilitant la collaboration et la traçabilité. Cela garantit que toutes les évolutions sont <strong class="font-bold">versionnées, sécurisées et accessibles</strong>, une bonne pratique essentielle pour la <strong class="font-bold">gestion de projet</strong>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M12_</span> (Utiliser un outil de gestion de version de code source).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Plateforme de Déploiement : fly.io (ou Heroku)</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d1-2-3">
+                            <span><strong class="font-bold">Justification</strong> : fly.io est une plateforme de déploiement (PaaS) qui simplifie la mise en ligne de l'application. Elle permet un <strong class="font-bold">déploiement rapide et une gestion facilitée de l'infrastructure</strong>, assurant que l'application est <strong class="font-bold">accessible publiquement</strong> et <strong class="font-bold">disponible 24/7</strong> pour les utilisateurs des Jeux Olympiques. Sa capacité à <strong class="font-bold">scaler</strong> est un atout majeur.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_025_</span> (Déployer son site sur le Web), <span class="font-semibold">B3_M08_026_</span> (Déploiement en ligne du site Flask/Django).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4 text-justify">Réf. Modules : <span class="font-semibold">B1_M03_</span> (Définir les options techniques), <span class="font-semibold">B1_M08_</span> (Concevoir l’architecture logicielle), et des modules spécifiques du Bloc 3.</p>
+            </div>
+        </section>
+
+        <!-- Section Dossier 2 -->
+        <section id="dossier2" class="card p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 section-header">💻 3. Dossier 2 : Développement de la solution (Rapport écrit - Partie 2 & Réalisation)</h2>
+            <p class="mb-4 text-justify">Cette section correspond au Dossier 2 de votre "Copie à rendre" et est le cœur de la réalisation de votre projet.</p>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">3.1. Développez la solution demandée par le client</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Construire l'application web de billetterie fonctionnelle en Python, HTML, CSS et JavaScript.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : C'est la preuve concrète de votre capacité à programmer une solution digitale.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d2-3-1" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-1">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-4" data-progress-group="d2-3-1">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Initialisation du Projet Backend (Python) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Créez le dossier de votre projet</strong> (ex: <code class="bg-gray-700 p-1 rounded">billetterie_jo</code>).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Ouvrez ce dossier dans VS Code</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Ouvrez le terminal intégré de VS Code</strong> (Ctrl+Shift+\` ou Terminal > New Terminal).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Créez et activez un environnement virtuel</strong> : <code class="bg-gray-700 p-1 rounded">python -m venv venv</code> puis <code class="bg-gray-700 p-1 rounded">source venv/bin/activate</code> (macOS/Linux) ou <code class="bg-gray-700 p-1 rounded">.\venv\Scripts\activate</code> (Windows).</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_002_</span> (Environnements de travail).</p>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Installez votre framework Python</strong> (Django recommandé) : <code class="bg-gray-700 p-1 rounded">pip install Django psycopg2-binary</code> (pour PostgreSQL).</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_</span> (Développer une application web avec Python).</p>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Initialisez le projet Django</strong> : <code class="bg-gray-700 p-1 rounded">django-admin startproject core .</code> puis <code class="bg-gray-700 p-1 rounded">python manage.py startapp tickets</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Ajoutez 'tickets' à INSTALLED_APPS</strong> dans <code class="bg-gray-700 p-1 rounded">core/settings.py</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Configurez votre base de données</strong> (PostgreSQL) dans <code class="bg-gray-700 p-1 rounded">core/settings.py</code>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M06_</span> (Créer et administrer une base de données relationnelle).</p>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Effectuez les migrations initiales</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py migrate</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Créez un superutilisateur (administrateur)</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py createsuperuser</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Démarrez le serveur de développement</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py runserver</code> (vérifiez <code class="bg-gray-700 p-1 rounded">http://127.0.0.1:8000/</code>).</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Définition des Modèles de Données (Backend Python) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Ouvrez le fichier <code class="bg-gray-700 p-1 rounded">tickets/models.py</code></strong> (si Django).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Créez les classes Python</strong> pour <code class="bg-gray-700 p-1 rounded">User</code>, <code class="bg-gray-700 p-1 rounded">Offer</code>, <code class="bg-gray-700 p-1 rounded">Order</code>, <code class="bg-gray-700 p-1 rounded">Ticket</code>, <code class="bg-gray-700 p-1 rounded">AdminUser</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Définissez les relations</strong> entre ces modèles (One-to-Many, Many-to-Many).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Générez les migrations Django</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py makemigrations tickets</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Appliquez les migrations</strong> : <code class="bg-gray-700 p-1 rounded">python manage.py migrate</code>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B3_M06_</span> (Créer et administrer une base de données relationnelle), <span class="font-semibold">B3_M08_028_</span> (Les modèles en Django).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Création des APIs (Backend Python) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Ouvrez le fichier <code class="bg-gray-700 p-1 rounded">tickets/views.py</code></strong> (si Django REST Framework).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Créez les vues (fonctions/classes) pour vos APIs</strong> : listage offres, création compte, authentification, réservation, gestion admin offres, visualisation ventes admin, vérification billets employé.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Définissez les URLs</strong> qui pointent vers ces vues dans <code class="bg-gray-700 p-1 rounded">core/urls.py</code> et <code class="bg-gray-700 p-1 rounded">tickets/urls.py</code>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B3_M10_</span> (Concevoir une API), <span class="font-semibold">B3_M08_030_</span> (API REST en Python).</p>
+                        <p class="text-sm text-gray-400 ml-8 text-justify"><strong>Qui fait quoi (Backend)</strong> : Le backend (Django/Flask) reçoit les requêtes du frontend, interagit avec la base de données, exécute la logique métier (génération de clés, hachage des mots de passe, simulation de paiement), et renvoie les réponses au frontend.</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Développement du Frontend (HTML/CSS/JavaScript) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Créez un dossier <code class="bg-gray-700 p-1 rounded">templates</code></strong> (si Django) et un dossier <code class="bg-gray-700 p-1 rounded">static</code> avec <code class="bg-gray-700 p-1 rounded">css</code> et <code class="bg-gray-700 p-1 rounded">js</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Intégrez Bootstrap</strong> : Ajoutez les liens CDN pour Bootstrap dans vos fichiers HTML.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Lien : <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/#cdn-links" target="_blank" class="text-blue-400 hover:underline">Bootstrap CDN</a></p>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_018_</span> à <span class="font-semibold">B3_M03_021_</span>.</p>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Créez la structure de vos pages HTML</strong> : <code class="bg-gray-700 p-1 rounded">index.html</code>, <code class="bg-gray-700 p-1 rounded">offers.html</code>, <code class="bg-gray-700 p-1 rounded">cart.html</code>, <code class="bg-gray-700 p-1 rounded">auth.html</code>, <code class="bg-gray-700 p-1 rounded">admin.html</code>, <code class="bg-gray-700 p-1 rounded">ticket_confirmation.html</code>, <code class="bg-gray-700 p-1 rounded">employee_scan.html</code>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M03_001_</span> à <span class="font-semibold">B3_M03_005_</span>.</p>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Écrivez votre code JavaScript</strong> (<code class="bg-gray-700 p-1 rounded">static/js/main.js</code> par exemple) :</span>
+                        </label>
+                        <ul class="list-disc list-inside ml-8 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Requêtes Fetch/AJAX</strong> : Utilisez <code class="bg-gray-700 p-1 rounded">fetch()</code> pour communiquer avec les APIs de votre backend.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Gestion des événements</strong> : Attachez des écouteurs d'événements aux boutons (ex: "Ajouter au panier", "Se connecter", "Payer").</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Simulation de paiement</strong> : Créez une fonction JavaScript qui simule un paiement réussi ou échoué.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1"><span><strong class="font-bold">Génération de QR Code</strong> : Intégrez <code class="bg-gray-700 p-1 rounded">qrcode.js</code> pour générer le QR Code sur la page de confirmation du billet.</span></label></li>
+                        </ul>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B3_M05_</span> (Programmer avec Javascript), <span class="font-semibold">B3_M05_012_</span> (JavaScript Canvas - pour la génération graphique).</p>
+                        <p class="text-sm text-gray-400 ml-8 text-justify"><strong>Qui fait quoi (Frontend)</strong> : Le frontend (HTML/CSS/JS) affiche l'interface utilisateur, collecte les entrées de l'utilisateur, envoie les requêtes aux APIs du backend, et affiche les réponses (y compris les e-tickets avec QR Code).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Intégration et Tests Manuels :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Vérifiez la communication</strong> : Assurez-vous que le frontend peut bien appeler toutes les APIs du backend et recevoir les réponses attendues.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Testez tous les parcours utilisateur</strong> : De la navigation à l'achat de billet, à la connexion, à la gestion admin.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-1">
+                            <span><strong class="font-bold">Vérifiez la réactivité du design</strong> sur différentes tailles d'écran.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B3_M03_016_</span> (Le responsive design), <span class="font-semibold">B3_M03_017_</span> (Valider la qualité de son site).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4 text-justify">Réf. Générale Bloc 3 : Ce développement est la mise en pratique de l'ensemble du <span class="font-semibold">B3_Bloc_</span>, en particulier <span class="font-semibold">B3_M03_</span> (HTML/CSS/Bootstrap), <span class="font-semibold">B3_M04_</span> (JavaScript facultatif), <span class="font-semibold">B3_M05_</span> (Programmer avec Javascript), <span class="font-semibold">B3_M06_</span> (BDD relationnelle), <span class="font-semibold">B3_M07_</span> (BDD non relationnelle), <span class="font-semibold">B3_M08_</span> (Python web), <span class="font-semibold">B3_M09_</span> (React Native si application mobile), <span class="font-semibold">B3_M10_</span> (Concevoir API), <span class="font-semibold">B3_M11_</span> (Utiliser API).</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">3.2. Produire le MCD (Modèle Conceptuel de Données)</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Représenter visuellement la structure de votre base de données et les relations entre les informations.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : Cela prouve que vous avez une conception logique et organisée de vos données, une compétence vue en <span class="text-blue-400 font-semibold">B2_M07_</span>.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d2-3-2" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-2">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d2-3-2">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Identifiez les entités :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Utilisateur</strong> (pour les clients et l'administrateur).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Offre</strong> (pour les types de billets : Solo, Duo, Familiale).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Commande</strong> (pour regrouper les billets achetés par un utilisateur).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Billet</strong> (chaque billet individuel, même si acheté en lot).</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Identifiez les attributs pour chaque entité :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Utilisateur</strong> : <code class="bg-gray-700 p-1 rounded">id</code> (clé primaire), <code class="bg-gray-700 p-1 rounded">nom</code>, <code class="bg-gray-700 p-1 rounded">prenom</code>, <code class="bg-gray-700 p-1 rounded">email</code> (unique), <code class="bg-gray-700 p-1 rounded">mot_de_passe_haché</code>, <code class="bg-gray-700 p-1 rounded">clé_secrète_compte</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Offre</strong> : <code class="bg-gray-700 p-1 rounded">id</code> (clé primaire), <code class="bg-gray-700 p-1 rounded">nom_offre</code>, <code class="bg-gray-700 p-1 rounded">description</code>, <code class="bg-gray-700 p-1 rounded">prix</code>, <code class="bg-gray-700 p-1 rounded">nombre_personnes_inclus</code>, <code class="bg-gray-700 p-1 rounded">stock_disponible</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Commande</strong> : <code class="bg-gray-700 p-1 rounded">id</code> (clé primaire), <code class="bg-gray-700 p-1 rounded">utilisateur_id</code> (clé étrangère vers Utilisateur), <code class="bg-gray-700 p-1 rounded">date_commande</code>, <code class="bg-gray-700 p-1 rounded">statut_paiement</code> (simulé), <code class="bg-gray-700 p-1 rounded">montant_total</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Billet</strong> : <code class="bg-gray-700 p-1 rounded">id</code> (clé primaire), <code class="bg-gray-700 p-1 rounded">commande_id</code> (clé étrangère vers Commande), <code class="bg-gray-700 p-1 rounded">offre_id</code> (clé étrangère vers Offre), <code class="bg-gray-700 p-1 rounded">clé_secrète_achat</code>, <code class="bg-gray-700 p-1 rounded">clé_finale_qrcode</code> (concaténation des deux clés).</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Identifiez les relations et leur cardinalité :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span>Un <strong class="font-bold">Utilisateur</strong> peut passer <strong class="font-bold">plusieurs</strong> <strong class="font-bold">Commandes</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span>Une <strong class="font-bold">Commande</strong> est passée par <strong class="font-bold">un seul</strong> <strong class="font-bold">Utilisateur</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span>Une <strong class="font-bold">Commande</strong> contient <strong class="font-bold">plusieurs</strong> <strong class="font-bold">Billets</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span>Un <strong class="font-bold">Billet</strong> appartient à <strong class="font-bold">une seule</strong> <strong class="font-bold">Commande</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span>Un <strong class="font-bold">Billet</strong> est basé sur <strong class="font-bold">une seule</strong> <strong class="font-bold">Offre</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span>Une <strong class="font-bold">Offre</strong> peut générer <strong class="font-bold">plusieurs</strong> <strong class="font-bold">Billets</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Dessinez le MCD :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span>Utilisez <strong class="font-bold">PlantUML</strong> (serveur en ligne) pour générer l'image du MCD.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Lien : <a href="https://plantuml.com/fr/online-server" target="_blank" class="text-blue-400 hover:underline">PlantUML Online Server</a></p>
+                        <div class="bg-gray-700 p-4 rounded-lg mt-2 overflow-x-auto">
+                            <pre class="text-sm text-gray-300"><code>
+@startuml
+entity Utilisateur {
+  * id : INTEGER <<PK>>
+  --
+  nom : VARCHAR
+  prenom : VARCHAR
+  email : VARCHAR <<Unique>>
+  mot_de_passe_hashe : VARCHAR
+  cle_secrete_compte : VARCHAR
+}
+
+entity Offre {
+  * id : INTEGER <<PK>>
+  --
+  nom_offre : VARCHAR
+  description : TEXT
+  prix : DECIMAL
+  nombre_personnes_inclus : INTEGER
+  stock_disponible : INTEGER
+}
+
+entity Commande {
+  * id : INTEGER <<PK>>
+  --
+  date_commande : DATETIME
+  statut_paiement : VARCHAR
+  montant_total : DECIMAL
+  utilisateur_id : INTEGER <<FK>>
+}
+
+entity Billet {
+  * id : INTEGER <<PK>>
+  --
+  cle_secrete_achat : VARCHAR
+  cle_finale_qrcode : VARCHAR
+  commande_id : INTEGER <<FK>>
+  offre_id : INTEGER <<FK>>
+}
+
+Utilisateur "1" -- "0..N" Commande : passe
+Commande "1" -- "1..N" Billet : contient
+Offre "1" -- "0..N" Billet : est_base_sur
+
+@enduml
+                            </code></pre>
+                        </div>
+                        <label class="flex items-center space-x-3 mt-2">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-2">
+                            <span><strong class="font-bold">Incluez l'image du MCD dans votre rapport écrit</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4">Réf. Modules : <span class="font-semibold">B3_M06_</span> (Créer et administrer une base de données relationnelle) et <span class="font-semibold">B2_M07_</span> (Comprendre la modélisation UML).</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">3.3. Effectuer une gestion de projet et fournir l'outil de gestion de projet que vous avez utilisé suivant la méthode KANBAN</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Démontrer votre capacité à organiser, suivre et piloter un projet de développement.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : La gestion de projet est une compétence clé pour tout développeur, et l'agilité est très valorisée.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d2-3-3" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-3">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d2-3-3">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Assurez-vous que votre tableau Trello est à jour :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Toutes les User Stories et tâches du Bloc 3 sont créées comme des cartes dans Trello.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Chaque carte a une <strong class="font-bold">DoR</strong> et une <strong class="font-bold">DoD</strong> définies via des checklists.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Les cartes ont été déplacées entre les listes (<code class="bg-gray-700 p-1 rounded">Backlog</code>, <code class="bg-gray-700 p-1 rounded">À Faire</code>, <code class="bg-gray-700 p-1 rounded">En Cours</code>, <code class="bg-gray-700 p-1 rounded">En Revue/Test</code>, <code class="bg-gray-700 p-1 rounded">Terminé</code>) au fur et à mesure de votre avancement.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Vous avez ajouté des dates d'échéance aux cartes importantes.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Vous avez assigné des membres (même si c'est juste vous).</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Rédigez une section dans votre rapport expliquant :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Pourquoi vous avez choisi <strong class="font-bold">Kanban</strong> et <strong class="font-bold">Trello</strong> pour ce projet (simplicité, visibilité, flexibilité).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Comment vous avez structuré votre tableau (les noms de vos listes).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Comment vous avez appliqué les concepts de <strong class="font-bold">DoR</strong> et <strong class="font-bold">DoD</strong> (expliquez-les et donnez des exemples concrets de checklists sur vos cartes).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span>Comment vous avez suivi l'avancement du projet grâce à Trello.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-3">
+                            <span><strong class="font-bold">Fournissez le lien public de votre tableau Trello</strong> dans votre rapport.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4">Réf. Modules : <span class="font-semibold">B2_M03_</span> (Utiliser l'outil Agile : Kanban) et <span class="font-semibold">B2_M04_</span> (Manager et piloter les tâches avec ses équipes projet grâce à TRELLO).</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">3.4. Produire une documentation technique (abordant la sécurité et les évolutions futures)</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Créer un document de référence pour les futurs développeurs ou administrateurs de votre application.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : Une bonne documentation est essentielle pour la maintenabilité et l'évolutivité d'un projet.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d2-3-4" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-4">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d2-3-4">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Créez un nouveau document (Word ou PDF).</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4">
+                            <span><strong class="font-bold">Créez un nouveau document</strong> (Word ou PDF).</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Structurez votre documentation technique avec les sections suivantes :</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Introduction</strong> : Contexte du projet (billetterie JO), Objectifs de cette documentation technique.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Architecture du Système</strong> : Décrivez les différentes couches (Frontend, Backend, Base de données, API, Services externes), expliquez leur rôle et interactions. <strong class="font-bold">Incluez le diagramme d'architecture logicielle</strong> (<span class="font-semibold">B1_M08_</span>).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Technologies Utilisées</strong> : Listez les versions exactes et expliquez le rôle spécifique de chaque technologie majeure (Python, Django/Flask, HTML, CSS, JavaScript, Bootstrap, PostgreSQL, MongoDB si utilisée). Mentionnez les principales bibliothèques Python et JavaScript.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Aspects de Sécurité Implémentés</strong> : Reprenez en détail les mesures de sécurité du point 2.2 de ce guide. Décrivez comment elles sont <strong class="font-bold">techniquement</strong> implémentées dans votre code (ex: hachage bcrypt, tokens JWT). Expliquez la politique de mot de passe.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Structure du Code</strong> : Décrivez l'organisation de vos dossiers et fichiers principaux, expliquez les conventions de nommage.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Déploiement</strong> : Décrivez les étapes pour déployer l'application sur la plateforme choisie (fly.io ou Heroku), mentionnez les fichiers de configuration nécessaires (<code class="bg-gray-700 p-1 rounded">Procfile</code>, <code class="bg-gray-700 p-1 rounded">requirements.txt</code>).</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-4"><span><strong class="font-bold">Maintenance et Évolutions Futures</strong> : Proposez au moins 3 pistes concrètes d'amélioration ou d'extension de l'application. Identifiez les défis potentiels pour la maintenance à long terme.</span></label></li>
+                        </ul>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M13_001_</span> (Améliorer sa solution), <span class="font-semibold">B3_M13_005_</span> (Documentation de l'architecture et du code).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">3.5. Produire un manuel d'utilisation (un "tuto")</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Créer un guide simple et intuitif pour les utilisateurs finaux de votre application (les visiteurs des JO, l'administrateur, l'employé de scan).</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : Une application est inutile si personne ne sait l'utiliser. Cela montre votre capacité à communiquer clairement.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d2-3-5" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-5">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d2-3-5">
+                    <li>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5">
+                            <span><strong class="font-bold">Créez un nouveau document</strong> (Word ou PDF).</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Structurez votre manuel par parcours utilisateur :</h4>
+                        <ul class="list-disc list-inside ml-4 space-y-1">
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5"><span><strong class="font-bold">Introduction</strong> : Qu'est-ce que l'application et à quoi sert-elle ?</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5"><span><strong class="font-bold">Pour les Visiteurs/Utilisateurs</strong> : Accéder au site, Découvrir les offres, Sélectionner et ajouter au panier, Créer un compte, Se connecter, Simuler le paiement, Accéder à l'e-billet, Consulter l'historique des commandes.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5"><span><strong class="font-bold">Pour les Administrateurs</strong> : Accéder à l'espace administrateur, Gérer les offres, Visualiser les ventes.</span></label></li>
+                            <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5"><span><strong class="font-bold">Pour les Employés du Contrôle d'Accès</strong> : Accéder à l'interface de scan, Scanner un e-billet, Comprendre le résultat du scan.</span></label></li>
+                        </ul>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Utilisez des visuels :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5">
+                            <span>Prenez des <strong class="font-bold">captures d'écran</strong> de chaque étape clé de votre application.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5">
+                            <span>Ajoutez des <strong class="font-bold">flèches, des encadrés ou du texte</strong> sur les images pour guider l'utilisateur.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-5">
+                            <span><strong class="font-bold">Écrivez simplement et clairement</strong> : Évitez le jargon technique. Utilisez des phrases courtes et des listes à puces.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4">Réf. Module : <span class="font-semibold">B3_M13_</span> (Maintenir et documenter son projet - notamment <span class="font-semibold">B3_M13_002_</span> : La documentation pour l'utilisateur).</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">3.6. Mettre en place des tests et produire un rapport détaillant le pourcentage de code total couvert par les tests</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Prouver que votre application est fiable, que vous avez une démarche qualité et que vous savez utiliser des outils de test.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : Les tests sont cruciaux pour la qualité logicielle et la détection des bugs. La couverture de code montre la rigueur de votre démarche.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d2-3-6" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-6">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d2-3-6">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Préparer l'environnement de tests :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Assurez-vous que votre environnement virtuel est activé.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Installez <code class="bg-gray-700 p-1 rounded">pytest</code> et <code class="bg-gray-700 p-1 rounded">pytest-cov</code> : <code class="bg-gray-700 p-1 rounded">pip install pytest pytest-cov</code>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M08_010_</span> (Améliorer la qualité du code - les tests unitaires).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Écrire des tests unitaires (pour le Backend Python) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Créez un dossier <code class="bg-gray-700 p-1 rounded">tests</code> à la racine de votre projet (ou dans chaque application Django).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Créez des fichiers de test (ex: <code class="bg-gray-700 p-1 rounded">tests/test_models.py</code>, <code class="bg-gray-700 p-1 rounded">tests/test_auth.py</code>, <code class="bg-gray-700 p-1 rounded">tests/test_offers.py</code>).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Pour chaque fonction ou méthode importante de votre code Python, écrivez un test unitaire.</span>
+                        </label>
+                        <div class="bg-gray-700 p-4 rounded-lg mt-2 overflow-x-auto">
+                            <pre class="text-sm text-gray-300"><code>
+# Exemple de test unitaire pour une fonction de hachage de mot de passe
+from mon_app.utils import hash_password # Adaptez l'import selon votre structure
+
+def test_password_hashing():
+    password = "MonSuperMotDePasse123!"
+    hashed_password = hash_password(password)
+    assert hashed_password is not None
+    assert isinstance(hashed_password, str)
+    assert len(hashed_password) > 30 # Un hash est long
+    # Ici, vous ne pouvez pas déhacher, mais vous pouvez vérifier si une fonction de vérification fonctionne
+    # assert check_password(password, hashed_password) is True
+                            </code></pre>
+                        </div>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B2_M08_001_</span> (Les test unitaires), <span class="font-semibold">B2_M09_001_</span> (Les notions de test unitaire et test fonctionnel).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Écrire des tests fonctionnels / d'intégration (pour le Backend Python) :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Ces tests simulent des interactions plus complexes (ex: un utilisateur s'inscrit, se connecte, ajoute une offre au panier, simule le paiement).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Si vous utilisez Django, utilisez le <code class="bg-gray-700 p-1 rounded">TestCase</code> de Django pour simuler des requêtes HTTP à vos APIs.</span>
+                        </label>
+                        <div class="bg-gray-700 p-4 rounded-lg mt-2 overflow-x-auto">
+                            <pre class="text-sm text-gray-300"><code>
+# Exemple de test fonctionnel pour une API de création de compte
+from django.test import TestCase, Client
+
+class AuthAPITest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_register_user(self):
+        response = self.client.post('/api/register/', {
+            'nom': 'Doe',
+            'prenom': 'John',
+            'email': 'john.doe@example.com',
+            'password': 'Password123!'
+        }, content_type='application/json')
+        self.assertEqual(response.status_code, 201) # 201 Created
+        self.assertIn('token', response.json()) # Vérifiez que le token est retourné
+                            </code></pre>
+                        </div>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Modules : <span class="font-semibold">B2_M08_002_</span> (Le test fonctionnel), <span class="font-semibold">B2_M08_007_</span> (Les tests d’intégration du système), <span class="font-semibold">B2_M09_002_</span> (Les tests fonctionnels avec WebTestCase et Panther).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Exécuter les tests et générer le rapport de couverture de code :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Dans votre terminal (avec l'environnement virtuel activé), naviguez à la racine de votre projet.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Exécutez la commande : <code class="bg-gray-700 p-1 rounded">pytest --cov=.</code></span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Analyser et inclure le rapport dans votre dossier :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Copiez le résultat affiché dans le terminal ou, si <code class="bg-gray-700 p-1 rounded">pytest-cov</code> génère un fichier HTML (souvent dans un dossier <code class="bg-gray-700 p-1 rounded">htmlcov</code>), prenez une capture d'écran de ce rapport.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Dans votre rapport écrit, commentez le pourcentage de couverture obtenu. Expliquez ce que cela signifie et pourquoi c'est important.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-6">
+                            <span>Discutez des bugs que vous avez pu trouver et corriger grâce à l'écriture de ces tests.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B2_M08_010_</span> (La lecture d'un rapport statistique de classification).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4 text-justify">Réf. Générale Tests : Ce point est crucial et s'appuie fortement sur <span class="font-semibold">B2_M08_</span> (Tester son application Web), <span class="font-semibold">B2_M09_</span> (Réaliser des tests fonctionnels), et <span class="font-semibold">B3_M08_</span> (Développer une application web avec Python - notamment <span class="font-semibold">B3_M08_010_</span> : Améliorer la qualité du code - les tests unitaires).</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-semibold mb-3 text-blue-400">3.7. Déploiement en ligne</h3>
+                <p class="mb-2 text-justify"><strong>Objectif</strong> : Rendre votre application accessible publiquement sur internet.</p>
+                <p class="mb-4 text-justify"><strong>Pourquoi c'est important</strong> : C'est la dernière étape pour que votre solution soit utilisable par tous et pour prouver que vous maîtrisez le cycle de vie complet du développement.</p>
+
+                <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                    <div id="progress-d2-3-7" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+                </div>
+                <p class="text-sm mb-4 text-gray-300"><span id="progress-text-d2-3-7">0%</span> Complété pour cette section.</p>
+
+                <ul class="space-y-3" data-progress-group="d2-3-7">
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Préparer votre application pour le déploiement :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Créez un fichier <code class="bg-gray-700 p-1 rounded">requirements.txt</code></strong> à la racine de votre projet : <code class="bg-gray-700 p-1 rounded">pip freeze > requirements.txt</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Créez un fichier <code class="bg-gray-700 p-1 rounded">Procfile</code></strong> à la racine de votre projet (sans extension). Contenu pour Django : <code class="bg-gray-700 p-1 rounded">web: gunicorn core.wsgi</code> (installez <code class="bg-gray-700 p-1 rounded">gunicorn</code>: <code class="bg-gray-700 p-1 rounded">pip install gunicorn</code>).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Assurez-vous que votre application est configurée pour la production</strong> (désactivez le mode debug, configurez les variables d'environnement pour la base de données).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Initialisez un dépôt Git local</strong> si ce n'est pas déjà fait : <code class="bg-gray-700 p-1 rounded">git init</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Connectez votre dépôt local à votre dépôt GitHub public</strong> : <code class="bg-gray-700 p-1 rounded">git add .</code>, <code class="bg-gray-700 p-1 rounded">git commit -m "Initial commit for deployment"</code>, <code class="bg-gray-700 p-1 rounded">git branch -M main</code>, <code class="bg-gray-700 p-1 rounded">git remote add origin VOTRE_LIEN_GITHUB_PUBLIC</code>, <code class="bg-gray-700 p-1 rounded">git push -u origin main</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Fournissez ce lien GitHub public dans vos livrables</strong>.</span>
+                        </label>
+                        <p class="text-sm text-gray-400 ml-8">Réf. Module : <span class="font-semibold">B3_M12_</span> (Utiliser un outil de gestion de version de code source).</p>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <h4 class="text-xl font-medium mb-2">Choisir et configurer votre plateforme de déploiement :</h4>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span>Choisissez <strong class="font-bold">fly.io</strong> (recommandé pour sa simplicité et son plan gratuit généreux).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Créez un compte sur fly.io</strong>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Installez leur CLI</strong> : <code class="bg-gray-700 p-1 rounded">curl -L https://fly.io/install.sh | sh</code> (macOS/Linux).</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Connectez-vous</strong> : <code class="bg-gray-700 p-1 rounded">fly auth login</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span>Dans le dossier racine de votre projet, <strong class="font-bold">initialisez l'application fly.io</strong> : <code class="bg-gray-700 p-1 rounded">fly launch</code>.</span>
+                        </label>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Déployez votre application</strong> : <code class="bg-gray-700 p-1 rounded">fly deploy</code>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                    <li>
+                        <label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="d2-3-7">
+                            <span><strong class="font-bold">Fournissez le lien de votre application déployée dans votre rapport</strong>.</span>
+                        </label>
+                        <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                    </li>
+                </ul>
+                <p class="text-sm text-gray-400 mt-4">Réf. Modules : <span class="font-semibold">B3_M03_025_</span> (Déployer son site sur le Web) et <span class="font-semibold">B3_M08_026_</span> (Déploiement en ligne du site Flask/Django).</p>
+            </div>
+        </section>
+
+        <!-- Section Lien avec Blocs 1 et 2 -->
+        <section id="liens_blocs" class="card p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 section-header">🔗 4. Lien avec les Blocs 1 et 2 validés : Votre Avantage Clé</h2>
+            <p class="mb-4 text-justify">C'est ici que vous allez impressionner le jury ! Montrez que vous n'avez pas seulement développé une application, mais que vous avez intégré toutes les compétences de votre formation. Pour chaque section de votre rapport et de votre présentation orale, faites des liens explicites.</p>
+
+            <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                <div id="progress-links" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+            </div>
+            <p class="text-sm mb-4 text-gray-300"><span id="progress-text-links">0%</span> Complété pour cette section.</p>
+
+            <ul class="space-y-4" data-progress-group="links">
+                <li>
+                    <h3 class="text-2xl font-semibold mb-2 text-blue-400">Bloc 1 : Conception et spécification d'une solution digitale</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Spécifications techniques</strong> : Dans votre rapport, lorsque vous décrivez votre code, mentionnez comment il traduit les spécifications techniques que vous avez apprises à élaborer (<span class="font-semibold">B1_M03_</span> et <span class="font-semibold">B1_M09_</span>). Votre code du Bloc 3 doit être la traduction directe de ces spécifications.</span></label></li>
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Architecture logicielle</strong> : Lorsque vous présentez l'architecture de votre solution, expliquez comment celle que vous avez conçue en <span class="font-semibold">B1_M08_</span> a guidé votre développement concret.</span></label></li>
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Analyse des besoins</strong> : Rappelez comment l'analyse approfondie des besoins client (<span class="font-semibold">B1_M02_</span>) a directement façonné les fonctionnalités que vous avez implémentées.</span></label></li>
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Maquettes Figma</strong> : Si vous avez réalisé des maquettes en <span class="font-semibold">B1_M04_</span>, montrez-les et expliquez comment elles ont servi de base visuelle pour le développement de votre interface utilisateur.</span></label></li>
+                    </ul>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold mb-2 text-blue-400">Bloc 2 : Gestion, pilotage et testing d'une Solution Digitale</h3>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Méthodologies agiles (Scrum/Kanban)</strong> : Dans votre rapport et oral, expliquez comment vous avez appliqué ces méthodologies (<span class="font-semibold">B2_M02_</span>, <span class="font-semibold">B2_M03_</span>, <span class="font-semibold">B2_M04_</span>, <span class="font-semibold">B2_M05_</span>, <span class="font-semibold">B2_M06_</span>) pour gérer le développement de votre projet. Montrez votre tableau Kanban Trello comme preuve concrète de cette gestion.</span></label></li>
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Plan de test fonctionnel</strong> : Référez-vous au plan de test que vous avez appris à préparer en <span class="font-semibold">B2_M09_</span>. Votre rapport de tests (point 3.6) en est l'application directe.</span></label></li>
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Analyse des risques</strong> : Mentionnez comment l'analyse des risques (<span class="font-semibold">B2_M09_</span>) a influencé vos choix de sécurité et vos plans de contingence pour le projet (par exemple, pourquoi vous avez mis en place telle mesure de sécurité).</span></label></li>
+                        <li><label class="flex items-center space-x-3"><input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links"><span><strong class="font-bold">Critères d'acceptation (DoR/DoD)</strong> : Démontrez comment ces définitions (<span class="font-semibold">B2_M04_</span>) ont structuré votre travail et la validation de vos tâches dans Trello.</span></label></li>
+                        <li><label class="flex items-center space-x-3">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="links">
+                            <span><strong class="font-bold">Modélisation UML</strong> : Si vous avez utilisé des diagrammes UML (<span class="font-semibold">B2_M07_</span>) pour la conception de votre solution (MCD, diagrammes de séquence pour les flux comme la réservation), n'hésitez pas à les mentionner comme support à votre développement et votre compréhension des interactions.</span>
+                        </label></li>
+                    </ul>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Section Conseils Supplémentaires -->
+        <section id="conseils" class="card p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 section-header">💡 5. Conseils Supplémentaires pour Réussir</h2>
+            <p class="mb-4 text-justify">Ces conseils vous aideront à peaufiner votre projet et votre présentation pour maximiser vos chances de succès.</p>
+
+            <div class="w-full bg-gray-600 rounded-full h-3 mb-2">
+                <div id="progress-conseils" class="progress-bar-fill h-3 rounded-full" style="width: 0%;"></div>
+            </div>
+            <p class="text-sm mb-4 text-gray-300"><span id="progress-text-conseils">0%</span> Complété pour cette section.</p>
+
+            <ul class="space-y-3" data-progress-group="conseils">
+                <li>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="conseils">
+                        <span><strong class="font-bold">Cohérence</strong> : Assurez-vous que toutes les parties de votre rapport et de votre présentation sont parfaitement cohérentes entre elles et avec les documents fournis (énoncé, copie à rendre, RNCP).</span>
+                    </label>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+                <li>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="conseils">
+                        <span><strong class="font-bold">Justification</strong> : Chaque choix, chaque étape doit être justifiée. Pourquoi avez-vous fait cela ? Quel problème cela résout-il ?</span>
+                    </label>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+                <li>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="conseils">
+                        <span><strong class="font-bold">Démonstration</strong> : Lors de l'oral, préparez une démonstration fluide de votre application. Mettez en avant les fonctionnalités clés et les aspects sécurisés (ex: la création de compte avec la politique de mot de passe, la simulation de paiement, l'affichage du QR Code, la simulation de scan du QR Code).</span>
+                    </label>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+                <li>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="conseils">
+                        <span><strong class="font-bold">Clarté et concision</strong> : Même si le détail est important, structurez vos informations de manière claire et concise. Utilisez des titres, sous-titres, listes à puces pour faciliter la lecture et la compréhension.</span>
+                    </label>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+                <li>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="conseils">
+                        <span><strong class="font-bold">Préparation aux questions</strong> : Anticipez les questions du jury, notamment sur les compromis que vous avez pu faire, les défis rencontrés et comment vous les avez surmontés. Soyez prête à expliquer pourquoi vous avez choisi Python, Django, etc.</span>
+                    </label>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+                <li>
+                    <label class="flex items-center space-x-3">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded" data-progress-item="conseils">
+                        <span><strong class="font-bold">Répétez votre présentation orale</strong> plusieurs fois pour être à l'aise et respecter le temps imparti.</span>
+                    </label>
+                    <textarea class="w-full mt-2" rows="2" placeholder="Notes personnelles..."></textarea>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const startDate = new Date('2025-08-07'); // Jeudi 7 août 2025
+            const firstSubmissionDate = new Date('2026-03-31'); // 31 mars 2026
+            const finalValidationDate = new Date('2026-04-30'); // 30 avril 2026
+
+            document.getElementById('start-date').textContent = startDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('first-submission-date').textContent = firstSubmissionDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('final-validation-date').textContent = finalValidationDate.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const progressGroups = document.querySelectorAll('[data-progress-group]');
+            const globalProgressBar = document.getElementById('global-progress-bar');
+            const globalProgressText = document.getElementById('global-progress-text');
+
+            function updateProgressBar(groupId) {
+                const group = document.querySelector(`[data-progress-group="${groupId}"]`);
+                if (!group) return;
+
+                const checkboxes = group.querySelectorAll(`input[type="checkbox"][data-progress-item="${groupId}"]`);
+                const checkedCheckboxes = group.querySelectorAll(`input[type="checkbox"][data-progress-item="${groupId}"]:checked`);
+                const progressBar = document.getElementById(`progress-${groupId}`);
+                const progressText = document.getElementById(`progress-text-${groupId}`);
+
+                if (checkboxes.length === 0) {
+                    if (progressBar) progressBar.style.width = '0%';
+                    if (progressText) progressText.textContent = '0%';
+                    return;
+                }
+
+                const percentage = (checkedCheckboxes.length / checkboxes.length) * 100;
+                if (progressBar) progressBar.style.width = `${percentage}%`;
+                if (progressText) progressText.textContent = `${Math.round(percentage)}%`;
+
+                updateGlobalProgress();
+            }
+
+            function updateGlobalProgress() {
+                let totalCheckboxes = 0;
+                let totalCheckedCheckboxes = 0;
+
+                progressGroups.forEach(group => {
+                    const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+                    const checkedCheckboxes = group.querySelectorAll('input[type="checkbox"]:checked');
+                    totalCheckboxes += checkboxes.length;
+                    totalCheckedCheckboxes += checkedCheckboxes.length;
+                });
+
+                if (totalCheckboxes === 0) {
+                    globalProgressBar.style.width = '0%';
+                    globalProgressText.textContent = '0%';
+                    return;
+                }
+
+                const globalPercentage = (totalCheckedCheckboxes / totalCheckboxes) * 100;
+                globalProgressBar.style.width = `${globalPercentage}%`;
+                globalProgressText.textContent = `${Math.round(globalPercentage)}%`;
+            }
+
+            function saveState() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                const state = {};
+                checkboxes.forEach(checkbox => {
+                    state[checkbox.id || checkbox.closest('label')?.textContent.trim() || checkbox.dataset.progressItem + '_' + Math.random()] = checkbox.checked;
+                });
+                localStorage.setItem('bloc3_progress_state', JSON.stringify(state));
+
+                const textareas = document.querySelectorAll('textarea');
+                const notes = {};
+                textareas.forEach((textarea, index) => {
+                    notes[textarea.id || 'notes_' + index] = textarea.value;
+                });
+                localStorage.setItem('bloc3_notes_state', JSON.stringify(notes));
+            }
+
+            function loadState() {
+                const savedState = localStorage.getItem('bloc3_progress_state');
+                if (savedState) {
+                    const state = JSON.parse(savedState);
+                    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                        const id = checkbox.id || checkbox.closest('label')?.textContent.trim() || checkbox.dataset.progressItem + '_' + Math.random();
+                        if (state.hasOwnProperty(id)) {
+                            checkbox.checked = state[id];
+                        }
+                    });
+                }
+
+                const savedNotes = localStorage.getItem('bloc3_notes_state');
+                if (savedNotes) {
+                    const notes = JSON.parse(savedNotes);
+                    document.querySelectorAll('textarea').forEach((textarea, index) => {
+                        const id = textarea.id || 'notes_' + index;
+                        if (notes.hasOwnProperty(id)) {
+                            textarea.value = notes[id];
+                        }
+                    });
+                }
+            }
+
+            // Load state on page load
+            loadState();
+
+            // Attach event listeners and initial update
+            progressGroups.forEach(group => {
+                const groupId = group.dataset.progressGroup;
+                group.querySelectorAll(`input[type="checkbox"][data-progress-item="${groupId}"]`).forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        updateProgressBar(groupId);
+                        saveState();
+                    });
+                });
+            });
+
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.addEventListener('input', saveState);
+            });
+
+            // Initial update for all progress bars
+            progressGroups.forEach(group => {
+                updateProgressBar(group.dataset.progressGroup);
+            });
+            updateGlobalProgress();
+
+            // Scroll to top button functionality
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 200) { // Show button after scrolling 200px
+                    scrollToTopBtn.style.display = 'block';
+                } else {
+                    scrollToTopBtn.style.display = 'none';
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Smooth scroll
+                });
+            });
+        });
+    </script>
+</body>
+</html>
